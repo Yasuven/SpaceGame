@@ -2,6 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+
+#OS and Editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Auto generated?
 .utmp/
 /[Ll]ibrary/
 /[Tt]emp/
