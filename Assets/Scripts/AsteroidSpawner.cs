@@ -5,15 +5,16 @@ public class AsteroidSpawner : MonoBehaviour
     public Asteroid asteroidPrefab;
     public float trajectoryVariance = 15f;
     public float spawnRate = 2f;
-    public float spawnDistance = 15f;
+    public float spawnDistance = 10f;
     public int spawnAmount = 1;
 
 
     void Start()
     {
-        InvokeRepeating(nameof(Spawn), Time.time, spawnRate);
+        InvokeRepeating(nameof(Spawn), 0f, spawnRate);
     }
 
+    // Spawns asteroids at random positions around the spawner
     private void Spawn()
     {
         for (int i = 0; i < spawnAmount; i++)

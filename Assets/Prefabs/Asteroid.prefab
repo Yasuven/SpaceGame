@@ -55,7 +55,7 @@ MonoBehaviour:
   size: 1
   minSize: 0.5
   maxSize: 1.5
-  speed: 10
+  speed: 5
   maxLifetime: 30
 --- !u!212 &7971503475956457566
 SpriteRenderer:

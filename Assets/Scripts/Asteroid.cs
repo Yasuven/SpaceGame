@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Asteroid : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Asteroid : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
+    // Initializes the asteroid with random sprite, rotation, scale, and mass
     private void Start()
     {
         _spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
@@ -28,10 +30,47 @@ public class Asteroid : MonoBehaviour
         _rb.mass = size;
     }
 
+    // Sets the trajectory of the asteroid
     public void SetTrajectory(Vector2 direction)
     {
         _rb.AddForce(direction * speed);
 
-        Destroy(gameObject, maxLifetime);
+       Destroy(gameObject, maxLifetime);
     }
+
+    // Handles collision with bullets
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+
+        if (bullet != null)
+        {
+            
+            if (size / 2f >= minSize)
+            {
+                CreateSplit();
+                CreateSplit();
+            }
+            Events.AsteroidDestroyed(this);
+            Destroy(gameObject);
+        }
+
+    }
+
+    // Creates a smaller asteroid split from the current one
+    private void CreateSplit()
+    {
+        Vector2 position = transform.position;
+        position += Random.insideUnitCircle * 0.5f;
+
+        Asteroid half = Instantiate(this, position, transform.rotation);
+        half.size = size / 2f;
+        half.SetTrajectory(Random.insideUnitCircle.normalized * speed);
+
+    }
+
+
+
+
+
 }
