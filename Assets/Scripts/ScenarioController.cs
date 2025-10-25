@@ -65,10 +65,6 @@ public class ScenarioController : MonoBehaviour
         {
             Events.GameOver();
         }
-        else
-        {
-            player.Invoke(nameof(player.Respawn), player.respawnTime);
-        }
     }
 
     // Handles asteroid destroyed event
