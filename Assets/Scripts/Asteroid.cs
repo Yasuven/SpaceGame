@@ -15,6 +15,7 @@ public class Asteroid : MonoBehaviour
 
     private void Awake()
     {
+        
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
     }
