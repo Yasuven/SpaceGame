@@ -782,6 +782,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePoint: {fileID: 478619699}
   moveDuration: 1.5
+  initialMessage: {fileID: 759719755}
+  messageDuration: 6
 --- !u!58 &416770004
 CircleCollider2D:
   m_ObjectHideFlags: 0
