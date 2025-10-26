@@ -1,5 +1,9 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class Player : MonoBehaviour
 {
@@ -17,12 +21,16 @@ public class Player : MonoBehaviour
     private bool _thrusting;
     private float _turnDirection;
     private bool _isAlive = true;
+    public GameObject timer;
+    public TextMeshProUGUI timerText;
+    private bool isEjecting = false;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _thrusterParticles = GetComponentInChildren<ParticleSystem>();
+        
     }
 
     private void Update()
@@ -32,6 +40,7 @@ public class Player : MonoBehaviour
         HandleShipThrusting();
         HandleShipRotation();
         HandleShooting();
+        HandleEjecting(); 
     }
 
     private void FixedUpdate()
@@ -82,6 +91,16 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Shoot();
+        }
+    }
+
+    private void HandleEjecting()
+    {
+        if (isEjecting) return;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            isEjecting = true;
+            GameManager.Instance.StartEjection();
         }
     }
 

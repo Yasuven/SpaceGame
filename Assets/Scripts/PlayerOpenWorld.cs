@@ -11,7 +11,6 @@ public class PlayerOpenWorld : MonoBehaviour
     private ParticleSystem _thrusterParticles;
     private bool _thrusting;
     private float _turnDirection;
-
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();

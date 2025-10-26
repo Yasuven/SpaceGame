@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerEntersPlanet : MonoBehaviour
 {
+    // TODO: rework this whole mess. This is horrible...
     public Transform dialoguePoint; 
     public float moveDuration = 1.5f;
     private bool isMovingToDialogue = false;
@@ -10,6 +11,8 @@ public class PlayerEntersPlanet : MonoBehaviour
     public GameObject initialMessage;
 
     public float messageDuration = 6f;
+
+    public float disableControlsTime = 1f;
 
     public void Start()
     {
@@ -53,15 +56,14 @@ public class PlayerEntersPlanet : MonoBehaviour
 
         player.position = targetPos;
 
-        // make a proper dialogue window
+        // TODO: make proper dialogue window later somehow
         if (initialMessage != null)
         {
             StartCoroutine(ShowInitialMessage());
         }
 
         // enable movement
-        if (playerScript != null) playerScript.enabled = true;
-        if (rb != null) rb.bodyType = RigidbodyType2D.Dynamic;
+        StartCoroutine(EnableMovementWithDelay(playerScript, rb));
     }
 
     private IEnumerator ShowInitialMessage()
@@ -69,6 +71,14 @@ public class PlayerEntersPlanet : MonoBehaviour
         initialMessage.SetActive(true);
         yield return new WaitForSeconds(messageDuration);
         initialMessage.SetActive(false);
+    }
+
+    public IEnumerator EnableMovementWithDelay(PlayerOpenWorld playerScript, Rigidbody2D rb)
+    {
+        yield return new WaitForSeconds(disableControlsTime);
+
+        if (playerScript != null) playerScript.enabled = true;
+        if (rb != null) rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
 }
