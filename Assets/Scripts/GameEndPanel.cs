@@ -13,17 +13,27 @@ public class GameEndPanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         Events.OnGameOver += OnGameOver;
+        Events.OnWinningCondition += OnWinningCondition;
     }
 
     private void OnDestroy()
     {
         Events.OnGameOver -= OnGameOver;
+        Events.OnWinningCondition -= OnWinningCondition;
     }   
 
     private void OnGameOver()
     {
         int finalScore = Events.RequestScore();
         Title.text = "Game Over";
+        ScoreText.text = $"Score: {finalScore}";
+        gameObject.SetActive(true);
+    }
+
+    private void OnWinningCondition()
+    {
+        int finalScore = Events.RequestScore();
+        Title.text = "You Win";
         ScoreText.text = $"Score: {finalScore}";
         gameObject.SetActive(true);
     }

@@ -30,4 +30,7 @@ public static class Events
 
     public static event Action OnGameOver;
     public static void GameOver() => OnGameOver?.Invoke();
+
+    public static event Action OnWinningCondition;
+    public static void Victory() => OnWinningCondition?.Invoke();
 }
