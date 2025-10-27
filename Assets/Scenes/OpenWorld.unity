@@ -396,7 +396,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "You\u2019re new here, huh?\nHead top-right to the asteroid zone or hunt
-    for others.\nBlast what you can, then hit E to bail. Get 1000 points, and you\u2019re
+    for others.\nBlast what you can, then hit E to bail. Get 2000 points, and you\u2019re
     done.\n\nGood luck out there!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

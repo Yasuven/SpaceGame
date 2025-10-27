@@ -85,9 +85,9 @@ public class ScenarioController : MonoBehaviour
         {
             Events.SetScore(score += 20);
         }
-    // When score reaches 5000 or more trigger gameover
+    // When score reaches 2000 or more trigger gameover
     // This is a temporary win condition
-            if (score >= 5000)
+            if (score >= 2000)
         {
             Events.Victory();
         }

@@ -30,7 +30,13 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _thrusterParticles = GetComponentInChildren<ParticleSystem>();
+        Events.OnWinningCondition += OnWin;
         
+    }
+
+    private void OnDestroy()
+    {
+        Events.OnWinningCondition -= OnWin;
     }
 
     private void Update()
@@ -100,7 +106,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             isEjecting = true;
-            GameManager.Instance.StartEjection();
+            Events.Ejecting();
         }
     }
 
@@ -167,5 +173,8 @@ public class Player : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
-
+    private void OnWin()
+    {
+        gameObject.SetActive(false);
+    }
 }
