@@ -1,57 +1,100 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 
-
+[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    [Header("References")]
     public Bullet bulletPrefab;
+    public TextMeshProUGUI timerText;
+    public GameObject timer;
 
+    [Header("Movement Settings")]
     public float ThrustSpeed = 10f;
     public float TurnSpeed = 100f;
     public float shipMaxVelocity = 10f;
+
+    [Header("Respawn Settings")]
     public float respawnTime = 3f;
     public float invulnerabilityTime = 3f;
 
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
     private ParticleSystem _thrusterParticles;
-    private bool _thrusting;
-    private float _turnDirection;
+
     private bool _isAlive = true;
-    public GameObject timer;
-    public TextMeshProUGUI timerText;
-    private bool isEjecting = false;
+    private bool _isPaused = false;
+    private bool _isEjecting = false;
+    [SerializeField] private bool _inOpenWorld = false;
+
+    // Input System
+    public InputActionAsset _inputActions;
+    private InputAction _thrustAction;
+    private InputAction _turnAction;
+    private InputAction _shootAction;
+    private InputAction _ejectAction;
+
+    private float _turnDirection;
+    private bool _thrusting;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _thrusterParticles = GetComponentInChildren<ParticleSystem>();
+
+        _thrustAction = InputSystem.actions.FindAction("Thrust");
+        _turnAction = InputSystem.actions.FindAction("Turn");
+        _shootAction = InputSystem.actions.FindAction("Shoot");
+        _ejectAction = InputSystem.actions.FindAction("Eject");
+
+        // Events
+        if (!_inOpenWorld)
+        {
+            _shootAction.performed += ctx => Shoot();
+            _ejectAction.performed += ctx => HandleEjecting();
+        }
+
         Events.OnWinningCondition += OnWin;
-        
+        Events.OnPauseGame += OnPauseGame;
+        Events.OnResumeGame += OnResumeGame;
+    }
+
+    private void OnEnable()
+    {
+        _inputActions.FindActionMap("Player").Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputActions.FindActionMap("Player").Disable();
     }
 
     private void OnDestroy()
     {
+        if (!_inOpenWorld)
+        {
+            _shootAction.performed -= ctx => Shoot();
+            _ejectAction.performed -= ctx => HandleEjecting();
+        }
         Events.OnWinningCondition -= OnWin;
+        Events.OnPauseGame -= OnPauseGame;
+        Events.OnResumeGame -= OnResumeGame;
     }
 
     private void Update()
     {
-        if (!_isAlive) return;
+        if (!_isAlive || _isPaused) return;
 
-        HandleShipThrusting();
-        HandleShipRotation();
-        HandleShooting();
-        HandleEjecting(); 
+        HandleInput();
+        UpdateThrusterEffects();
     }
 
     private void FixedUpdate()
     {
-        if (!_isAlive) return;
+        if (!_isAlive || _isPaused) return;
 
         if (_thrusting)
         {
@@ -59,16 +102,20 @@ public class Player : MonoBehaviour
             _rb.linearVelocity = Vector2.ClampMagnitude(_rb.linearVelocity, shipMaxVelocity);
         }
 
-        if (_turnDirection != 0f)
+        if (Mathf.Abs(_turnDirection) > 0.01f)
         {
             _rb.rotation += _turnDirection * TurnSpeed * Time.fixedDeltaTime;
         }
     }
 
-    private void HandleShipThrusting()
+    private void HandleInput()
     {
-        _thrusting = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
-        
+        _thrusting = _thrustAction.ReadValue<float>() > 0.5f;
+        _turnDirection = _turnAction.ReadValue<float>();
+    }
+
+    private void UpdateThrusterEffects()
+    {
         if (_thrusterParticles != null)
         {
             var emission = _thrusterParticles.emission;
@@ -76,48 +123,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void HandleShipRotation()
-    {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            _turnDirection = 1f;
-        }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            _turnDirection = -1f;
-        }
-        else
-        {
-            _turnDirection = 0f;
-        }
-    }
-
-    private void HandleShooting()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
-    }
-
     private void HandleEjecting()
     {
-        if (isEjecting) return;
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            isEjecting = true;
-            Events.Ejecting();
-        }
+        if (_isEjecting) return;
+        _isEjecting = true;
+        Events.Ejecting();
     }
 
-    // Shoots a bullet from the player's position
     private void Shoot()
     {
+        if (!_isAlive || _isPaused) return;
+
         Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         bullet.Fire(transform.up);
     }
 
-    // Handles collision with asteroids
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Asteroid asteroid = collision.gameObject.GetComponent<Asteroid>();
@@ -137,18 +157,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Respawns the player at the center of the screen with temporary invulnerability
     public void Respawn()
     {
         transform.position = Vector3.zero;
-        gameObject.layer = LayerMask.NameToLayer("Ignore Collisions"); 
+        gameObject.layer = LayerMask.NameToLayer("Ignore Collisions");
         gameObject.SetActive(true);
         _isAlive = true;
-        
+
         StartCoroutine(InvulnerabilityFlash());
     }
 
-    // Makes the player flash and be invulnerable for a short time
     private IEnumerator InvulnerabilityFlash()
     {
         float elapsed = 0f;
@@ -167,7 +185,6 @@ public class Player : MonoBehaviour
         TurnOnCollisions();
     }
 
-    // Re-enables collisions for the player
     private void TurnOnCollisions()
     {
         gameObject.layer = LayerMask.NameToLayer("Player");
@@ -176,5 +193,17 @@ public class Player : MonoBehaviour
     private void OnWin()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnPauseGame()
+    {
+        
+        _inputActions.FindActionMap("Player").Disable();
+    }
+
+    private void OnResumeGame()
+    {
+        
+        _inputActions.FindActionMap("Player").Enable();
     }
 }

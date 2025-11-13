@@ -37,4 +37,13 @@ public static class Events
     public static event Action OnEjecting;
 
     public static void Ejecting() => OnEjecting?.Invoke();
+
+    public static event Action OnPauseGame;
+
+    public static void PauseGame() => OnPauseGame?.Invoke();
+
+    public static event Action OnResumeGame;
+
+    public static void ResumeGame() => OnResumeGame?.Invoke();
 }
+

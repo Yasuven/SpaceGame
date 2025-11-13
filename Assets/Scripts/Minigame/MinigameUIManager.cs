@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class MinigameUIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public Image[] lifeIcons;
