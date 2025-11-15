@@ -124,6 +124,50 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
   m_PrefabInstance: {fileID: 3507349839561319647}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &176847512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176847514}
+  - component: {fileID: 176847513}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &176847513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176847512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd83b19490708f64b9d6292887447c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &176847514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176847512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &338195043
 GameObject:
   m_ObjectHideFlags: 0
@@ -6131,6 +6175,11 @@ MonoBehaviour:
   shipMaxVelocity: 100
   respawnTime: 3
   invulnerabilityTime: 3
+  thrustFadeSpeed: 2
+  deathClip: {fileID: 8300000, guid: 4ffa7a2523548f9459e38295a31c43e9, type: 3}
+  thrustLoopClip: {fileID: 8300000, guid: 23112b3ad6710864cbba2754da0061d3, type: 3}
+  shootClip: {fileID: 8300000, guid: c28244c98df1d9b419ea7c02d562c4de, type: 3}
+  respawnClip: {fileID: 8300000, guid: 3fc4dfac8b98afe43a4b675415ac30d5, type: 3}
   timer: {fileID: 0}
   timerText: {fileID: 979273844}
 --- !u!212 &1377836001
@@ -7204,3 +7253,4 @@ SceneRoots:
   - {fileID: 1197795861}
   - {fileID: 2046005608}
   - {fileID: 1599761876}
+  - {fileID: 176847514}

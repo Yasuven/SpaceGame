@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class Player : MonoBehaviour
 {
     public Bullet bulletPrefab;
@@ -14,6 +13,11 @@ public class Player : MonoBehaviour
     public float shipMaxVelocity = 10f;
     public float respawnTime = 3f;
     public float invulnerabilityTime = 3f;
+    public float thrustFadeSpeed = 2f;
+    public AudioClip deathClip;
+    public AudioClip thrustLoopClip;
+    public AudioClip shootClip;
+    public AudioClip respawnClip;
 
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
@@ -74,6 +78,14 @@ public class Player : MonoBehaviour
             var emission = _thrusterParticles.emission;
             emission.rateOverTime = _thrusting ? 50f : 0f;
         }
+        if (_thrusting)
+        {
+            AudioManager.Instance.PlayLoop(thrustLoopClip, true, thrustFadeSpeed);
+        }
+        else
+        {
+            AudioManager.Instance.PlayLoop(thrustLoopClip, false, thrustFadeSpeed);
+        }
     }
 
     private void HandleShipRotation()
@@ -115,6 +127,11 @@ public class Player : MonoBehaviour
     {
         Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         bullet.Fire(transform.up);
+
+        if (shootClip != null)
+        {
+            AudioManager.Instance.PlaySound(shootClip);
+        }
     }
 
     // Handles collision with asteroids
@@ -123,8 +140,13 @@ public class Player : MonoBehaviour
         Asteroid asteroid = collision.gameObject.GetComponent<Asteroid>();
         if (asteroid != null)
         {
+
+            if (deathClip != null){AudioManager.Instance.PlaySound(deathClip);}
+
             _rb.linearVelocity = Vector2.zero;
             _rb.angularVelocity = 0f;
+
+            AudioManager.Instance.StopLoop();
 
             gameObject.SetActive(false);
             _isAlive = false;
@@ -140,6 +162,8 @@ public class Player : MonoBehaviour
     // Respawns the player at the center of the screen with temporary invulnerability
     public void Respawn()
     {
+        if (respawnClip != null){AudioManager.Instance.PlaySound(respawnClip);}
+
         transform.position = Vector3.zero;
         gameObject.layer = LayerMask.NameToLayer("Ignore Collisions"); 
         gameObject.SetActive(true);
