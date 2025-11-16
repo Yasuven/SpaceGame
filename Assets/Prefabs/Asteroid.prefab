@@ -57,6 +57,13 @@ MonoBehaviour:
   maxSize: 1.5
   speed: 5
   maxLifetime: 30
+  explosionClips:
+  - {fileID: 8300000, guid: 14066ae862441e542b7ea6673921f914, type: 3}
+  - {fileID: 8300000, guid: bacc46e4ec3464b4cbbbb4986a6ac0e5, type: 3}
+  - {fileID: 8300000, guid: 048ceb079a90d3d488829fbe7251a381, type: 3}
+  - {fileID: 8300000, guid: 924eabccf35ea944c91e3b4c6b755af8, type: 3}
+  - {fileID: 8300000, guid: 70722fbe6845e2941b4716d04bc765f8, type: 3}
+  - {fileID: 8300000, guid: 87e42eb94a1d6304493ec0355c4ab7c5, type: 3}
 --- !u!212 &7971503475956457566
 SpriteRenderer:
   m_ObjectHideFlags: 0

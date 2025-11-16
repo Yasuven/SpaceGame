@@ -1,16 +1,77 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class OpenWorldInit : MonoBehaviour
 {
+    [Header("Setup")]
     public GameObject player;
     public Transform defaultSpawnPoint;
-    public GameObject asteroidAreaPrefab;  
-    public Transform asteroidAreasParent; 
+
+    [Header("Asteroid Areas")]
+    public GameObject asteroidAreaPrefab;
+    public Transform asteroidAreasParent;
+
+    [Header("Planet Setup")]
+    public Transform planetsPositionsParent;
 
     void Start()
     {
+        Debug.Log("total points from data carrier are: " + DataCarrier.points);
         HandlePlayerSpawn();
         HandleAsteroidAreas();
+
+        if (DataCarrier.firstLoad)
+        {
+            InitiatePlanets(); 
+            DataCarrier.firstLoad = false;
+        }
+ 
+        RetrievePlanetsFromList(); 
+        
+    }
+
+
+    private void InitiatePlanets()
+    {
+        if (planetsPositionsParent == null)
+            return;
+
+        foreach (Transform marker in planetsPositionsParent)
+        {
+            string planetId = marker.name.Replace("_location", "");
+
+            GameObject planetObj = SpawnPlanet(planetId, marker.position, marker.rotation);
+            if (planetObj == null)
+                continue;
+
+            Planet comp = planetObj.GetComponent<Planet>();
+            if (comp == null)
+                continue;
+
+            comp.planetId = planetId;
+
+            SetupPlanet(comp, planetId);
+
+            CreatePlanetState(comp);
+            
+        }
+    }
+
+    private void RetrievePlanetsFromList()
+    {
+        foreach (PlanetState state in DataCarrier.planetStates)
+        {
+            GameObject planetObj = SpawnPlanet(state.planetId, state.position, state.rotation);
+            if (planetObj == null)
+                continue;
+
+            Planet comp = planetObj.GetComponent<Planet>();
+            if (comp == null)
+                continue;
+            
+            SetupPlanet(comp, state.planetId, state.dialogueAssetName);
+            comp.ApplyState(state);
+        }
     }
 
     private void HandlePlayerSpawn()
@@ -28,33 +89,74 @@ public class OpenWorldInit : MonoBehaviour
         }
         else
         {
-            spawnPosition = player.transform.position; // just in case
+            spawnPosition = player.transform.position;
         }
 
         player.transform.position = spawnPosition;
     }
 
-        
-     // I have spent like 3 hrs on this bullshit dumb sollution... we need to rework it for sure   
     private void HandleAsteroidAreas()
     {
         foreach (Transform child in asteroidAreasParent)
         {
-            string areaName = child.name; 
+            string areaName = child.name;
 
-            if (!DataCarrier.asteroidAreas.ContainsKey(areaName)) continue;
-            
-            bool isActive = DataCarrier.asteroidAreas[areaName];
+            if (!DataCarrier.asteroidAreas.TryGetValue(areaName, out bool isActive) || !isActive)
+                continue;
 
-            if (isActive)
-            {
-                GameObject asteroidObj = Instantiate(asteroidAreaPrefab, child.position, Quaternion.identity, child);
-                asteroidObj.name = areaName;
+            GameObject asteroidObj = Instantiate(asteroidAreaPrefab, child.position, Quaternion.identity, child);
+            asteroidObj.name = areaName;
 
-                var trigger = asteroidObj.GetComponentInChildren<AsteroidsTrigger>();
-                if (trigger != null) trigger.areaName = areaName;
-            }
+            var trigger = asteroidObj.GetComponentInChildren<AsteroidsTrigger>();
+            if (trigger != null)
+                trigger.areaName = areaName;
         }
     }
+
+    private GameObject SpawnPlanet(string planetId, Vector3 position, Quaternion rotation)
+    {
+        GameObject prefab = Resources.Load<GameObject>($"Prefabs/{planetId}");
+        if (prefab == null)
+            return null;
+
+        GameObject planetObj = Instantiate(prefab, position, rotation);
+        planetObj.name = planetId;
+        return planetObj;
+    }
+
+    private void SetupPlanet(Planet planetComp, string planetId, string dialogueName = null)
+    {
+        if (planetComp == null)
+            return;
+        DataCarrier.planets.Add(planetComp);
+        string dialoguePath = $"Dialogues/{dialogueName ?? (planetId + "_dialogue")}";
+        DialogueData dialogueAsset = Resources.Load<DialogueData>(dialoguePath);
+        if (dialogueAsset != null)
+            planetComp.dialogueData = dialogueAsset;
+
+        string conditionPath = $"PlanetConditions/{planetId}_conditions";
+        PlanetCondition cond = Resources.Load<PlanetCondition>(conditionPath);
+        if (cond != null)
+            planetComp.specialConditions = cond;
+    }
+
+    private PlanetState CreatePlanetState(Planet planetComp)
+    {
+        PlanetState state = new PlanetState(planetComp);
+        DataCarrier.planetStates.Add(state);
+        return state;
+    }
+
+    public static void RewritePlanetStates()
+    {
+        DataCarrier.planetStates.Clear();
+
+        foreach (var planet in DataCarrier.planets)
+        {
+            if (planet != null)
+                DataCarrier.planetStates.Add(planet.GetState());
+        }
+    }
+
 
 }
