@@ -61,6 +61,8 @@ public class UIManager : MonoBehaviour
         }
 
         timerText.gameObject.SetActive(false);
+        int parsedScore = int.Parse(scoreText.text);
+        DataCarrier.points += parsedScore; // assign achiveved points to data carrier
         SceneManager.LoadScene("OpenWorld");
     }
 }
