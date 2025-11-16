@@ -17,11 +17,14 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+
+    // TODO: figure out. this is unused?
     public void StartEjection()
     {
         StartCoroutine(EjectionCountdown());
     }
 
+     // TODO: figure out. this is unused?
     private IEnumerator EjectionCountdown()
     {
         float countdown = countDown;
