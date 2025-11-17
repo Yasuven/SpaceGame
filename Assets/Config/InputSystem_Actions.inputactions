@@ -523,6 +523,17 @@
                 },
                 {
                     "name": "",
+                    "id": "10820bc9-5d70-4ee6-9c3e-06a683a488d4",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3eeaa464-339b-421e-8a9b-fa25a0b98d5f",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -561,6 +572,39 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "f111a9f4-ee8e-4514-9a97-251a000db9f6",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "87dfc2dd-7ff2-4ac2-ab18-57ed58b69d9e",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "297a1530-01c8-4d4e-83b1-2023e21c7f60",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": true
