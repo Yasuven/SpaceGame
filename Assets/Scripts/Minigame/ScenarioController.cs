@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class ScenarioController : MonoBehaviour
 {
     public Player player;
     public ParticleSystem explosion;
+
+    public WaveData DefaultWave;
 
     public int lives = 3;
     public int score = 0;
@@ -16,6 +19,7 @@ public class ScenarioController : MonoBehaviour
         Events.OnRequestScore += OnRequestScore;
         Events.OnPlayerDeath += OnPlayerDeath;
         Events.OnAsteroidDestroyed += OnAsteroidDestroyed;
+        Events.OnLevelStart += OnLevelStart;
     }
 
     private void OnDestroy()
@@ -26,12 +30,18 @@ public class ScenarioController : MonoBehaviour
         Events.OnRequestScore -= OnRequestScore;
         Events.OnPlayerDeath -= OnPlayerDeath;
         Events.OnAsteroidDestroyed -= OnAsteroidDestroyed;
+        Events.OnLevelStart -= OnLevelStart;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         Events.SetLives(lives);
         Events.SetScore(score);
+
+        yield return null; // wait 1 frame so all Awake() methods run
+
+        Debug.Log("ScenarioController Start() — FIRING EVENT AFTER 1 FRAME");
+        Events.LevelStart(DefaultWave);
     }
 
     private void OnSetLives(int amount)
@@ -87,10 +97,16 @@ public class ScenarioController : MonoBehaviour
         }
     // When score reaches 2000 or more trigger gameover
     // This is a temporary win condition
+    /*
             if (score >= 2000)
         {
             Events.Victory();
         }
+    */
+    }
+
+    private void OnLevelStart(WaveData wave)
+    {
     }
 
 

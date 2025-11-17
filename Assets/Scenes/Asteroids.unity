@@ -838,9 +838,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: -4008458707398706207, guid: c5a4fdf41fc04554c9856b6fbb0cdfe0, type: 3}
   trajectoryVariance: 15
+  NumberOfEnemiesPerWave: 5
   spawnRate: 2
-  spawnDistance: 10
+  spawnDistance: 12
   spawnAmount: 1
+  NumberOfEnemiesGrowth: 0
+  SpawnRateGrowth: 0
+  SpawnAmountGrowth: 0
 --- !u!1 &926331346
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1377836000}
   explosion: {fileID: 158025398}
+  DefaultWave: {fileID: 11400000, guid: 90488f8a351bf4a48a7c065c675b5dd9, type: 2}
   lives: 3
   score: 0
 --- !u!114 &929725408
