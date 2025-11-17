@@ -15,6 +15,6 @@ MonoBehaviour:
   NumberOfEnemies: 3
   spawnRate: 2
   spawnAmount: 1
-  NumberOfEnemiesGrowth: 2
+  NumberOfEnemiesGrowth: 4
   SpawnRateGrowth: 0.2
   SpawnAmountGrowth: 1

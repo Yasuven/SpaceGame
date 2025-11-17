@@ -40,7 +40,6 @@ public class ScenarioController : MonoBehaviour
 
         yield return null; // wait 1 frame so all Awake() methods run
 
-        Debug.Log("ScenarioController Start() — FIRING EVENT AFTER 1 FRAME");
         Events.LevelStart(DefaultWave);
     }
 
