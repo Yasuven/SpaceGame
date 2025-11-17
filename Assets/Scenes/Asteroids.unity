@@ -979,6 +979,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1512271553}
   optionsMenu: {fileID: 1442365773}
+  PlayerInput: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  PauseMenuOpenInput: 0
+  PauseMenuCloseInput: 0
 --- !u!1 &952606585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6227,7 +6230,7 @@ MonoBehaviour:
   shootClip: {fileID: 8300000, guid: c28244c98df1d9b419ea7c02d562c4de, type: 3}
   respawnClip: {fileID: 8300000, guid: 3fc4dfac8b98afe43a4b675415ac30d5, type: 3}
   _inOpenWorld: 0
-  _inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  PlayerInput: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!212 &1377836001
 SpriteRenderer:
   m_ObjectHideFlags: 0

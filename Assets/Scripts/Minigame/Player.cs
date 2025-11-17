@@ -33,16 +33,16 @@ public class Player : MonoBehaviour
     private ParticleSystem _thrusterParticles;
 
     private bool _isAlive = true;
-    private bool _isPaused = false;
     private bool _isEjecting = false;
     [SerializeField] private bool _inOpenWorld = false;
 
     // Input System
-    public InputActionAsset _inputActions;
+    public InputActionAsset PlayerInput;
     private InputAction _thrustAction;
     private InputAction _turnAction;
     private InputAction _shootAction;
     private InputAction _ejectAction;
+
 
     private float _turnDirection;
     private bool _thrusting;
@@ -52,11 +52,11 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _thrusterParticles = GetComponentInChildren<ParticleSystem>();
-
-        _thrustAction = InputSystem.actions.FindAction("Thrust");
-        _turnAction = InputSystem.actions.FindAction("Turn");
-        _shootAction = InputSystem.actions.FindAction("Shoot");
-        _ejectAction = InputSystem.actions.FindAction("Eject");
+        
+        _thrustAction = PlayerInput.FindAction("Thrust");
+        _turnAction = PlayerInput.FindAction("Turn");
+        _shootAction = PlayerInput.FindAction("Shoot");
+        _ejectAction = PlayerInput.FindAction("Eject");
 
         // Events
         if (!_inOpenWorld)
@@ -66,18 +66,6 @@ public class Player : MonoBehaviour
         }
 
         Events.OnWinningCondition += OnWin;
-        Events.OnPauseGame += OnPauseGame;
-        Events.OnResumeGame += OnResumeGame;
-    }
-
-    private void OnEnable()
-    {
-        _inputActions.FindActionMap("Player").Enable();
-    }
-
-    private void OnDisable()
-    {
-        _inputActions.FindActionMap("Player").Disable();
     }
 
     private void OnDestroy()
@@ -88,13 +76,11 @@ public class Player : MonoBehaviour
             _ejectAction.performed -= ctx => HandleEjecting();
         }
         Events.OnWinningCondition -= OnWin;
-        Events.OnPauseGame -= OnPauseGame;
-        Events.OnResumeGame -= OnResumeGame;
     }
 
     private void Update()
     {
-        if (!_isAlive || _isPaused) return;
+        if (!_isAlive) return;
 
         HandleInput();
         UpdateThrusterEffects();
@@ -102,7 +88,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_isAlive || _isPaused) return;
+        if (!_isAlive) return;
 
         if (_thrusting)
         {
@@ -148,7 +134,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        if (!_isAlive || _isPaused) return;
+        if (!_isAlive) return;
 
         Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         bullet.Fire(transform.up);
@@ -221,15 +207,5 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnPauseGame()
-    {
-
-        _inputActions.FindActionMap("Player").Disable();
-    }
-
-    private void OnResumeGame()
-    {
-
-        _inputActions.FindActionMap("Player").Enable();
-    }
+    
 }
