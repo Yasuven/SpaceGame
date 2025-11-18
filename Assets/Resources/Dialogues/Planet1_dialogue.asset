@@ -24,29 +24,47 @@ MonoBehaviour:
       nextNode: 1
       updatesPlanetNode: 1
       newPlanetNode: 1
+      triggersEvent: 0
+      eventId: 
     - text: just exit
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
   - npcText: short.
     options:
-    - text: ask something
+    - text: get new ship
       nextNode: 2
       updatesPlanetNode: 0
       newPlanetNode: 0
+      triggersEvent: 1
+      eventId: NEW_SPACESHIP
+    - text: dont get new ship
+      nextNode: 2
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
     - text: exit
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
   - npcText: final
     options:
     - text: exit
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
   - npcText: u won
     options:
     - text: thanks
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 

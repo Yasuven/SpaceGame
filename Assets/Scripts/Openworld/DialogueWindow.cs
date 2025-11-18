@@ -8,18 +8,15 @@ public class DialogueWindow : MonoBehaviour
     public TextMeshProUGUI npcText;
     public Transform optionsParent;
     public TextMeshProUGUI optionTemplate;   // <- the "Option" under OptionsParent
-
     public bool IsFinished { get; private set; }
 
     [Header("Settings")]
     public Color normalColor = Color.white;
     public Color selectedColor = Color.yellow;
-
     private DialogueData activeDialogue;
     private int currentNodeIndex = 0;
     private int selectedOption = 0;
     private bool isActive = false;
-
     private Planet currentPlanet;
     private List<TextMeshProUGUI> optionTexts = new List<TextMeshProUGUI>();
 
@@ -66,38 +63,59 @@ public class DialogueWindow : MonoBehaviour
 
         UpdateOptionColors();
     }
-
     private void HandleInput()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            MoveSelection(-1);
+
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+            MoveSelection(+1);
+
+        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            ConfirmSelection();
+    }
+    private void MoveSelection(int direction)
     {
         var node = activeDialogue.nodes[currentNodeIndex];
         int optionCount = node.options.Length;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            selectedOption = (selectedOption - 1 + optionCount) % optionCount;
-            UpdateOptionColors();
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            selectedOption = (selectedOption + 1) % optionCount;
-            UpdateOptionColors();
-        }
-        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
-        {
-            var option = node.options[selectedOption];
+        selectedOption = (selectedOption + direction + optionCount) % optionCount;
 
-            if (option.updatesPlanetNode && currentPlanet != null)
-                currentPlanet.currentNode = option.newPlanetNode;
+        UpdateOptionColors();
+    }
+    private void ConfirmSelection()
+    {
+        var node = activeDialogue.nodes[currentNodeIndex];
+        var option = node.options[selectedOption];
 
-            if (option.nextNode == -1)
-                EndDialogue();
-            else
-            {
-                currentNodeIndex = option.nextNode;
-                selectedOption = 0;
-                ShowCurrentNode();
-            }
+        ApplyPlanetProgress(option);
+        TriggerDialogueEvents(option); 
+
+        if (option.nextNode == -1)
+            EndDialogue();
+        else
+            GoToNextNode(option.nextNode);
+    }
+    private void TriggerDialogueEvents(DialogueOption option)
+    {
+        if (option.triggersEvent && currentPlanet != null && currentPlanet.events != null)
+        {
+            currentPlanet.events.TriggerEvent(option.eventId, currentPlanet);
         }
+    }
+    private void ApplyPlanetProgress(DialogueOption option)
+    {
+        if (option.updatesPlanetNode && currentPlanet != null)
+        {
+            currentPlanet.currentNode = option.newPlanetNode;
+        }
+    }
+
+    private void GoToNextNode(int nextNode)
+    {
+        currentNodeIndex = nextNode;
+        selectedOption = 0;
+        ShowCurrentNode();
     }
 
     private void UpdateOptionColors()

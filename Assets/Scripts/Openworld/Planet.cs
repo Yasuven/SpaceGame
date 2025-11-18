@@ -13,6 +13,7 @@ public class Planet : MonoBehaviour
     public Transform textSpot;         // where dialogue appears
     public DialogueWindow dialogueCanvas;  // world-space prefab reference
     public PlanetCondition specialConditions;
+    public PlanetEvents events;
 
     [Header("Timing")]
     public float moveDuration = 1.5f;

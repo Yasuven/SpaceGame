@@ -140,6 +140,13 @@ public class OpenWorldInit : MonoBehaviour
         PlanetCondition cond = Resources.Load<PlanetCondition>(conditionPath);
         if (cond != null)
             planetComp.specialConditions = cond;
+
+        string eventsPath = $"PlanetEvents/{planetId}_events";
+        PlanetEvents events = Resources.Load<PlanetEvents>(eventsPath);
+        if (events != null)
+            Debug.Log("we should have loaded events");
+            planetComp.events = events;
+
     }
 
     private PlanetState CreatePlanetState(Planet planetComp)

@@ -188,7 +188,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 5.39
+  m_Radius: 4.52
 --- !u!114 &2268933689183291641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,5 +208,6 @@ MonoBehaviour:
   textSpot: {fileID: 5891231367922909824}
   dialogueCanvas: {fileID: -1224407020821663544, guid: f68fecbf7648143c7a04b5b9f71e579c, type: 3}
   specialConditions: {fileID: 0}
+  events: {fileID: 0}
   moveDuration: 1.5
   disableControlsTime: 1
