@@ -204,9 +204,9 @@ MonoBehaviour:
   planetId: 
   dialogueData: {fileID: 0}
   currentNode: 0
-  visited: 0
   dialogueSpot: {fileID: 2734853181717666365}
   textSpot: {fileID: 5891231367922909824}
   dialogueCanvas: {fileID: 3464354127953653096, guid: f4dc10e24222e442ba1a282620ff9812, type: 3}
+  specialConditions: {fileID: 0}
   moveDuration: 1.5
   disableControlsTime: 1

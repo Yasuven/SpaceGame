@@ -78,14 +78,9 @@ public class Player : MonoBehaviour
             var emission = _thrusterParticles.emission;
             emission.rateOverTime = _thrusting ? 50f : 0f;
         }
-        if (_thrusting)
-        {
-            AudioManager.Instance.PlayLoop(thrustLoopClip, true, thrustFadeSpeed);
-        }
-        else
-        {
-            AudioManager.Instance.PlayLoop(thrustLoopClip, false, thrustFadeSpeed);
-        }
+        if (_thrusting){AudioManager.Instance.PlayLoop(thrustLoopClip, true, thrustFadeSpeed);}
+        
+        else{AudioManager.Instance.PlayLoop(thrustLoopClip, false, thrustFadeSpeed);}
     }
 
     private void HandleShipRotation()
