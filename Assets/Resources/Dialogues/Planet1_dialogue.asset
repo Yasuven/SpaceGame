@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Planet1_dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - npcText: first
+  - npcText: 'So lets try a longer phrase. What do you think?
+
+      Maybe even this
+      long?
+
+'
     options:
-    - text: proceed
+    - text: Yes, lets try
       nextNode: 1
       updatesPlanetNode: 1
       newPlanetNode: 1
@@ -23,14 +28,14 @@ MonoBehaviour:
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
-  - npcText: second
+  - npcText: short.
     options:
-    - text: exit
-      nextNode: -1
+    - text: ask something
+      nextNode: 2
       updatesPlanetNode: 0
       newPlanetNode: 0
-    - text: ask
-      nextNode: 2
+    - text: exit
+      nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
   - npcText: final

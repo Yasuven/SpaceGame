@@ -22,11 +22,13 @@ public class OpenWorldInit : MonoBehaviour
 
         if (DataCarrier.firstLoad)
         {
-            InitiatePlanets(); 
+            InitiatePlanets();
             DataCarrier.firstLoad = false;
         }
- 
-        RetrievePlanetsFromList(); 
+        else
+        {
+            RetrievePlanetsFromList();
+        }
         
     }
 
