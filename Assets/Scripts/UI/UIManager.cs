@@ -25,8 +25,6 @@ public class UIManager : MonoBehaviour
 
         PlayerInput.FindActionMap("Player").Enable();
         PlayerInput.FindActionMap("UI").Disable();
-        Debug.Log("PlayerMap Enabled: " + PlayerInput.FindActionMap("Player").enabled);
-        Debug.Log("UIMap Enabled: " + PlayerInput.FindActionMap("UI").enabled);
 
     }
 
