@@ -9,6 +9,7 @@ public class Asteroid : MonoBehaviour
     public float maxSize = 1.5f;
     public float speed = 50f;
     public float maxLifetime = 30f;
+    public AudioClip[] explosionClips;
 
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
@@ -46,6 +47,9 @@ public class Asteroid : MonoBehaviour
 
         if (bullet != null)
         {
+
+            if (explosionClips != null && explosionClips.Length > 0)
+            {int randomIndex = Random.Range(0, explosionClips.Length);AudioManager.Instance.PlaySound(explosionClips[randomIndex]);}
             
             if (size / 2f >= minSize)
             {

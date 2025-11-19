@@ -55,6 +55,15 @@ public class Planet : MonoBehaviour
         var playerScript = player.GetComponent<PlayerOpenWorld>();
         var rb = player.GetComponent<Rigidbody2D>();
 
+        AudioClip thrustClip = null;
+    float fadeDuration = 0f;
+    if (playerScript != null)
+    {
+        thrustClip = playerScript.thrustLoopClip;
+        fadeDuration = 1f / playerScript.thrustFadeSpeed; 
+        playerScript.enabled = false;
+      }
+
         if (playerScript) playerScript.enabled = false;
         if (rb)
         {
@@ -62,6 +71,23 @@ public class Planet : MonoBehaviour
             rb.angularVelocity = 0f;
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
+
+    if (AudioManager.Instance != null && thrustClip != null)
+    {
+        float startVolume = AudioManager.Instance._loopSource.volume;
+        float elapsedFade = 0f;
+        
+        while (elapsedFade < fadeDuration)
+        {
+            float currentVolume = Mathf.Lerp(startVolume, 0f, elapsedFade / fadeDuration);
+            AudioManager.Instance._loopSource.volume = currentVolume;
+            
+            elapsedFade += Time.deltaTime;
+            yield return null;
+        }
+
+        AudioManager.Instance.StopLoop(); 
+    }
 
         Vector3 startPos = player.position;
         Vector3 targetPos = dialogueSpot != null ? dialogueSpot.position : transform.position;
@@ -80,6 +106,7 @@ public class Planet : MonoBehaviour
         {
             var window = Instantiate(dialogueCanvas, textSpot.position, Quaternion.identity, textSpot);
 
+
             var cam = Camera.main;
             if (cam != null)
             {
@@ -87,6 +114,7 @@ public class Planet : MonoBehaviour
                 if (canvas) canvas.worldCamera = cam;
                 window.transform.forward = cam.transform.forward;
             }
+            
 
             window.StartDialogue(dialogueData, currentNode, this); // WOW THIS SHOULD WORK
 

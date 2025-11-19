@@ -15,4 +15,6 @@ public static class DataCarrier
         { "Area2", true },
         { "Area3", true }
     };
+
+    public static PlayerSpaceship playerSpaceship;
 }
