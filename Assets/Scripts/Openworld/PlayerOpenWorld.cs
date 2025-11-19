@@ -11,10 +11,24 @@ public class PlayerOpenWorld : MonoBehaviour
     private ParticleSystem _thrusterParticles;
     private bool _thrusting;
     private float _turnDirection;
+    public float thrustFadeSpeed = 2f;
+    public AudioClip thrustLoopClip;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _thrusterParticles = GetComponentInChildren<ParticleSystem>();
+
+            if (DataCarrier.playerSpaceship != null && DataCarrier.playerSpaceship.spaceshipModel != null)
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+            GameObject model = Instantiate(DataCarrier.playerSpaceship.spaceshipModel, transform);
+            model.transform.localPosition = Vector3.zero;
+            model.transform.localRotation = Quaternion.identity;
+        }
     }
 
     private void Update()
@@ -46,6 +60,9 @@ public class PlayerOpenWorld : MonoBehaviour
             var emission = _thrusterParticles.emission;
             emission.rateOverTime = _thrusting ? 50f : 0f;
         }
+        if (_thrusting){AudioManager.Instance.PlayLoop(thrustLoopClip, true, thrustFadeSpeed);}
+        
+        else{AudioManager.Instance.PlayLoop(thrustLoopClip, false, thrustFadeSpeed);}
     }
 
     private void HandleShipRotation()
