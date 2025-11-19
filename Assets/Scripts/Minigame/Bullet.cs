@@ -4,6 +4,9 @@ public class Bullet : MonoBehaviour
 {
     public float Speed = 500f;
     public float maxLifetime = 10f;
+    public int Damage = 1;
+    public ParticleSystem explosionPrefab;
+    public ObjectPool explosionPool;
 
     private Rigidbody2D _rb;
 
@@ -19,8 +22,14 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, maxLifetime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (explosionPrefab != null)
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
+
+
 }

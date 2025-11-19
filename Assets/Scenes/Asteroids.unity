@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!198 &158025398 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-  m_PrefabInstance: {fileID: 3507349839561319647}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &176847512
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd83b19490708f64b9d6292887447c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loopSource: {fileID: 0}
 --- !u!4 &176847514
 Transform:
   m_ObjectHideFlags: 0
@@ -845,6 +841,7 @@ MonoBehaviour:
   NumberOfEnemiesGrowth: 0
   SpawnRateGrowth: 0
   SpawnAmountGrowth: 0
+  MaxEnemies: 100
 --- !u!1 &926331346
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,8 +963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1377836000}
-  explosion: {fileID: 158025398}
-  DefaultWave: {fileID: 11400000, guid: 90488f8a351bf4a48a7c065c675b5dd9, type: 2}
+  explosionPrefab: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
+  DefaultLevel: {fileID: 11400000, guid: 6d310fdf625b2dd449de6a009fbd499e, type: 2}
   lives: 3
   score: 0
 --- !u!114 &929725408
@@ -7626,143 +7623,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &3507349839561319647
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4299382335728437058, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: InitialModule.startSize.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: InitialModule.startSizeY.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: InitialModule.startSizeZ.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: InitialModule.startLifetime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].time
-      value: 0.855739
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
-      value: 0.72642696
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
-      value: -0.7425743
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].inSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
-      value: -0.7425743
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].outSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 8783698987563775174, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
-      propertyPath: m_Name
-      value: Explosion
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7772,7 +7632,6 @@ SceneRoots:
   - {fileID: 1377836002}
   - {fileID: 895411177}
   - {fileID: 929725406}
-  - {fileID: 3507349839561319647}
   - {fileID: 1197795861}
   - {fileID: 2046005608}
   - {fileID: 1599761876}

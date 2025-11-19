@@ -46,8 +46,8 @@ public static class Events
 
     public static void ResumeGame() => OnResumeGame?.Invoke();
 
-    public static event Action<WaveData> OnLevelStart;
-    public static void LevelStart(WaveData wave) => OnLevelStart?.Invoke(wave);
+    public static event Action<LevelData> OnLevelStart;
+    public static void LevelStart(LevelData level) => OnLevelStart?.Invoke(level);
 
 }
 

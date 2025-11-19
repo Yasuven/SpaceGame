@@ -11,14 +11,27 @@ public class Asteroid : MonoBehaviour
     public float maxLifetime = 30f;
     public AudioClip[] explosionClips;
 
+    public int Health = 1;
+    public int[] ScoreValues;
+    public AsteroidData asteroidType;
+
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
+
+    public void Init(AsteroidData type)
+    {
+        asteroidType = type;
+        sprites = asteroidType.AsteroidSprites;
+        Health = asteroidType.Health;
+        ScoreValues = asteroidType.ScoreValues;
+    }
 
     private void Awake()
     {
         
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
+
     }
 
     // Initializes the asteroid with random sprite, rotation, scale, and mass
@@ -32,6 +45,7 @@ public class Asteroid : MonoBehaviour
         _rb.mass = size;
     }
 
+
     // Sets the trajectory of the asteroid
     public void SetTrajectory(Vector2 direction)
     {
@@ -41,23 +55,26 @@ public class Asteroid : MonoBehaviour
     }
 
     // Handles collision with bullets
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
         if (bullet != null)
         {
+            Health -= bullet.Damage;
+            if (Health <= 0) { 
 
-            if (explosionClips != null && explosionClips.Length > 0)
-            {int randomIndex = Random.Range(0, explosionClips.Length);AudioManager.Instance.PlaySound(explosionClips[randomIndex]);}
+                if (explosionClips != null && explosionClips.Length > 0)
+                {int randomIndex = Random.Range(0, explosionClips.Length);AudioManager.Instance.PlaySound(explosionClips[randomIndex]);}
             
-            if (size / 2f >= minSize)
-            {
-                CreateSplit();
-                CreateSplit();
+                if (size / 2f >= minSize)
+                {
+                    CreateSplit();
+                    CreateSplit();
+                }
+                Events.AsteroidDestroyed(this);
+                Destroy(gameObject);
             }
-            Events.AsteroidDestroyed(this);
-            Destroy(gameObject);
         }
 
     }
@@ -70,6 +87,13 @@ public class Asteroid : MonoBehaviour
 
         Asteroid half = Instantiate(this, position, transform.rotation);
         half.size = size / 2f;
+        half.transform.localScale = Vector3.one * half.size;
+
+        half.asteroidType = asteroidType;
+        half.Health = asteroidType.Health;
+        half.sprites = asteroidType.AsteroidSprites;
+        half.ScoreValues = asteroidType.ScoreValues;
+
         half.SetTrajectory(Random.insideUnitCircle.normalized * speed);
 
     }

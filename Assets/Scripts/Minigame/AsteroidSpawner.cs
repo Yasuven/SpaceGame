@@ -4,6 +4,8 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
     public Asteroid asteroidPrefab;
+    private AsteroidData asteroidData;
+
     public float trajectoryVariance = 15f;
     public float NumberOfEnemiesPerWave = 5;
     public float spawnRate = 2f;
@@ -13,8 +15,12 @@ public class AsteroidSpawner : MonoBehaviour
     public int NumberOfEnemiesGrowth = 2;
     public float SpawnRateGrowth = 0.2f;
     public int SpawnAmountGrowth = 1;
+    public int MaxEnemies = 100;
 
-    private WaveData Wave;
+    private int _currentWaveIndex = 0;
+    private int _totalSpawnedThisWave = 0;
+
+    private WaveData[] Waves;
 
     private void Awake()
     {
@@ -26,20 +32,26 @@ public class AsteroidSpawner : MonoBehaviour
         Events.OnLevelStart -= OnLevelStart;
     }
 
-    public void OnLevelStart(WaveData wave)
+    public void OnLevelStart(LevelData level)
     {
-        Debug.Log("Wave started, configuring spawner.");
-        Wave = wave;
-        spawnRate = Wave.spawnRate;
-        spawnAmount = Wave.spawnAmount;
-        NumberOfEnemiesPerWave = Wave.NumberOfEnemies;
-        NumberOfEnemiesGrowth = Wave.NumberOfEnemiesGrowth;
-        SpawnRateGrowth = Wave.SpawnRateGrowth;
-        SpawnAmountGrowth = Wave.SpawnAmountGrowth;
-    }
-    private void Start()
-    {
+        Waves = level.waves;
+
+        LoadWaveData(0);
+
         StartCoroutine(WaveLoop());
+    }
+
+    private void LoadWaveData(int waveIndex)
+    {
+        WaveData wave = Waves[waveIndex];
+        asteroidData = wave.AsteroidData;
+        spawnRate = wave.spawnRate;
+        spawnAmount = wave.spawnAmount;
+        NumberOfEnemiesPerWave = wave.NumberOfEnemies;
+        NumberOfEnemiesGrowth = wave.NumberOfEnemiesGrowth;
+        SpawnRateGrowth = wave.SpawnRateGrowth;
+        SpawnAmountGrowth = wave.SpawnAmountGrowth;
+        MaxEnemies = wave.maxEnemies;
     }
 
     private IEnumerator WaveLoop()
@@ -47,7 +59,7 @@ public class AsteroidSpawner : MonoBehaviour
         while (true)
         {
             yield return StartCoroutine(SpawnWave());
-            ApplyWaveGrowth();
+            HandleWaveProgression();
 
             // Optional: time between waves
             yield return new WaitForSeconds(2f);
@@ -67,6 +79,7 @@ public class AsteroidSpawner : MonoBehaviour
 
                 SpawnOneAsteroid();
                 spawnedThisWave++;
+                _totalSpawnedThisWave++;
             }
 
             yield return new WaitForSeconds(spawnRate);
@@ -83,8 +96,11 @@ public class AsteroidSpawner : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
 
         Asteroid asteroid = Instantiate(asteroidPrefab, spawnPoint, rotation);
-        asteroid.size = Random.Range(asteroid.minSize, asteroid.maxSize);
 
+        asteroid.Init(asteroidData);
+
+        asteroid.size = Random.Range(asteroid.minSize, asteroid.maxSize);
+        
         asteroid.SetTrajectory(rotation * -spawnDirection);
         
     }
@@ -99,6 +115,27 @@ public class AsteroidSpawner : MonoBehaviour
         spawnAmount = Mathf.Min(10, spawnAmount + SpawnAmountGrowth);
 
         Debug.Log($"New Wave Settings: Enemies={NumberOfEnemiesPerWave}, SpawnRate={spawnRate}, SpawnAmount={spawnAmount}");
+    }
+
+    private void HandleWaveProgression()
+    {
+
+        ApplyWaveGrowth();
+
+        if (_totalSpawnedThisWave >= MaxEnemies)
+        {
+            if (_currentWaveIndex < Waves.Length - 1)
+            {
+                _currentWaveIndex++;
+                LoadWaveData(_currentWaveIndex);
+            }
+            else
+            {
+                Debug.Log("Final wave reached. Increasing difficulty indefinitely.");
+            }
+
+            _totalSpawnedThisWave = 0;
+        }
     }
 
 }

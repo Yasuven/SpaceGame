@@ -4,9 +4,9 @@ using UnityEngine;
 public class ScenarioController : MonoBehaviour
 {
     public Player player;
-    public ParticleSystem explosion;
+    public ParticleSystem explosionPrefab;
 
-    public WaveData DefaultWave;
+    public LevelData DefaultLevel;
 
     public int lives = 3;
     public int score = 0;
@@ -40,7 +40,7 @@ public class ScenarioController : MonoBehaviour
 
         yield return null; // wait 1 frame so all Awake() methods run
 
-        Events.LevelStart(DefaultWave);
+        Events.LevelStart(DefaultLevel);
     }
 
     private void OnSetLives(int amount)
@@ -66,8 +66,10 @@ public class ScenarioController : MonoBehaviour
     // Handles player death event
     private void OnPlayerDeath(int amount)
     {
-        explosion.transform.position = player.transform.position;
-        explosion.Play();
+        if (explosionPrefab != null)
+        {
+            Instantiate(explosionPrefab, player.transform.position, Quaternion.identity);
+        }
 
         Events.SetLives(amount);
         if (lives <= 0)
@@ -77,23 +79,21 @@ public class ScenarioController : MonoBehaviour
     }
 
     // Handles asteroid destroyed event
-    private void OnAsteroidDestroyed(Asteroid asteroid) 
+    private void OnAsteroidDestroyed(Asteroid asteroid)
     {
-        explosion.transform.position = asteroid.transform.position;
-        explosion.Play();
+
+        int addScore = 0;
 
         if (asteroid.size < 0.75f)
-        {
-            Events.SetScore(score += 100);
-        }
+            addScore = asteroid.ScoreValues[0];
         else if (asteroid.size < 1.10f)
-        {
-            Events.SetScore(score += 50);
-        }
+            addScore = asteroid.ScoreValues[1];
         else
-        {
-            Events.SetScore(score += 20);
-        }
+            addScore = asteroid.ScoreValues[2];
+
+        score += addScore;
+        Events.SetScore(score);
+    
     // When score reaches 2000 or more trigger gameover
     // This is a temporary win condition
     /*
@@ -102,9 +102,9 @@ public class ScenarioController : MonoBehaviour
             Events.Victory();
         }
     */
-    }
+}
 
-    private void OnLevelStart(WaveData wave)
+    private void OnLevelStart(LevelData level)
     {
     }
 
