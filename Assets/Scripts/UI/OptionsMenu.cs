@@ -97,6 +97,7 @@ public class OptionsMenu : MonoBehaviour
     public void Back()
     {
         gameObject.SetActive(false);
+        if (PauseMenu == null) return;
         PauseMenu.gameObject.SetActive(true);
     }
 }
