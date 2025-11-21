@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 310838}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.68, y: -4, z: 0}
+  m_LocalPosition: {x: 19.71, y: -1.73, z: 0}
   m_LocalScale: {x: 0.65, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd83b19490708f64b9d6292887447c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loopSource: {fileID: 0}
 --- !u!4 &106736886
 Transform:
   m_ObjectHideFlags: 0
@@ -358,6 +359,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1360037341}
+  - {fileID: 878731211}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &265728392
@@ -934,6 +936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1377835997}
+  defaultShip: {fileID: 11400000, guid: ff0ffe058fbce4d1ba7e716f57670e65, type: 2}
   defaultSpawnPoint: {fileID: 827574046}
   asteroidAreaPrefab: {fileID: 1000451069857099793, guid: 7dda13fb770244ccc87cf8dfe4b34ce2, type: 3}
   asteroidAreasParent: {fileID: 1204432521}
@@ -968,6 +971,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &878731210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 878731211}
+  m_Layer: 0
+  m_Name: Planet2_location
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &878731211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878731210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.4, y: -6.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 148797143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &917928153
 GameObject:
@@ -6206,8 +6240,8 @@ GameObject:
   - component: {fileID: 1377836001}
   - component: {fileID: 1377835999}
   - component: {fileID: 1377835998}
-  - component: {fileID: 1377836004}
   - component: {fileID: 1377836005}
+  - component: {fileID: 1377836006}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -6253,8 +6287,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -6339,15 +6373,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e49b907ce68367c4296e8ea36cd09997, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1377836002
@@ -6366,23 +6400,6 @@ Transform:
   - {fileID: 952606586}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1377836004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377835997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91493ff75177949018073e349b12a326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ThrustSpeed: 5
-  TurnSpeed: 100
-  shipMaxVelocity: 8
-  thrustFadeSpeed: 2
-  thrustLoopClip: {fileID: 8300000, guid: 23112b3ad6710864cbba2754da0061d3, type: 3}
 --- !u!114 &1377836005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6400,6 +6417,32 @@ MonoBehaviour:
   topWall: {fileID: 1732249696}
   bottomWall: {fileID: 352497863}
   offset: 0.5
+--- !u!114 &1377836006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377835997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3201e4400cb1f724d943e61490643d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  timer: {fileID: 0}
+  ThrustSpeed: 10
+  TurnSpeed: 100
+  shipMaxVelocity: 10
+  respawnTime: 3
+  invulnerabilityTime: 3
+  thrustFadeSpeed: 2
+  deathClip: {fileID: 0}
+  thrustLoopClip: {fileID: 0}
+  shootClip: {fileID: 0}
+  respawnClip: {fileID: 0}
+  _inOpenWorld: 0
+  PlayerInput: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &1428299783
 GameObject:
   m_ObjectHideFlags: 0
@@ -7152,3 +7195,4 @@ SceneRoots:
   - {fileID: 1204432521}
   - {fileID: 148797143}
   - {fileID: 106736886}
+  - {fileID: 917928158}

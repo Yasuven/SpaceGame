@@ -17,4 +17,10 @@ public static class DataCarrier
     };
 
     public static PlayerSpaceship playerSpaceship;
+
+    static DataCarrier()
+    {
+        playerSpaceship = Resources.Load<PlayerSpaceship>("SpaceShip/BasicFighter");
+    }
+    
 }

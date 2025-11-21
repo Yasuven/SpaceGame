@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c35c21a36994c0fa28086cfac5743f, type: 3}
+  m_Name: Planet2_dialogue
+  m_EditorClassIdentifier: 
+  nodes:
+  - npcText: "S\"#)=(\u20ACASD?!#\"#(\"#\u20AC=)()) \u20AC=\"# ?\n"
+    options:
+    - text: Hm... sure...
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: Oh. Hi. Now we understand eachother.
+    options:
+    - text: Yes, much better
+      nextNode: 2
+      updatesPlanetNode: 1
+      newPlanetNode: 2
+      triggersEvent: 0
+      eventId: 
+    - text: Cool. See you soon
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 2
+      triggersEvent: 0
+      eventId: 
+  - npcText: Exchange 4000 points for a laser ship?
+    options:
+    - text: Let's do it
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 3
+      triggersEvent: 0
+      eventId: 
+    - text: Cool. See you soon
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 2
+      triggersEvent: 0
+      eventId: 

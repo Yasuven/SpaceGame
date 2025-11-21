@@ -5,6 +5,7 @@ public class OpenWorldInit : MonoBehaviour
 {
     [Header("Setup")]
     public GameObject player;
+    public PlayerSpaceship defaultShip;
     public Transform defaultSpawnPoint;
 
     [Header("Asteroid Areas")]
@@ -14,9 +15,14 @@ public class OpenWorldInit : MonoBehaviour
     [Header("Planet Setup")]
     public Transform planetsPositionsParent;
 
+    void Awake()
+    {
+        if (DataCarrier.playerSpaceship == null) DataCarrier.playerSpaceship = defaultShip;
+    }
+
     void Start()
     {
-        Debug.Log("total points from data carrier are: " + DataCarrier.points);
+        //Debug.Log("total points from data carrier are: " + DataCarrier.points);
         HandlePlayerSpawn();
         HandleAsteroidAreas();
 
@@ -29,7 +35,6 @@ public class OpenWorldInit : MonoBehaviour
         {
             RetrievePlanetsFromList();
         }
-        
     }
 
 
