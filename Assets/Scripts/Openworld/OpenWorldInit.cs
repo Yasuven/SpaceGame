@@ -5,6 +5,7 @@ public class OpenWorldInit : MonoBehaviour
 {
     [Header("Setup")]
     public GameObject player;
+    public PlayerSpaceship defaultShip;
     public Transform defaultSpawnPoint;
 
     [Header("Asteroid Areas")]
@@ -14,20 +15,26 @@ public class OpenWorldInit : MonoBehaviour
     [Header("Planet Setup")]
     public Transform planetsPositionsParent;
 
+    void Awake()
+    {
+        if (DataCarrier.playerSpaceship == null) DataCarrier.playerSpaceship = defaultShip;
+    }
+
     void Start()
     {
-        Debug.Log("total points from data carrier are: " + DataCarrier.points);
+        //Debug.Log("total points from data carrier are: " + DataCarrier.points);
         HandlePlayerSpawn();
         HandleAsteroidAreas();
 
         if (DataCarrier.firstLoad)
         {
-            InitiatePlanets(); 
+            InitiatePlanets();
             DataCarrier.firstLoad = false;
         }
- 
-        RetrievePlanetsFromList(); 
-        
+        else
+        {
+            RetrievePlanetsFromList();
+        }
     }
 
 
@@ -138,6 +145,13 @@ public class OpenWorldInit : MonoBehaviour
         PlanetCondition cond = Resources.Load<PlanetCondition>(conditionPath);
         if (cond != null)
             planetComp.specialConditions = cond;
+
+        string eventsPath = $"PlanetEvents/{planetId}_events";
+        PlanetEvents events = Resources.Load<PlanetEvents>(eventsPath);
+        if (events != null)
+            Debug.Log("we should have loaded events");
+            planetComp.events = events;
+
     }
 
     private PlanetState CreatePlanetState(Planet planetComp)

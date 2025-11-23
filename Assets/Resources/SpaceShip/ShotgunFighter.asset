@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c983b405ce1c240de8488b396e7f5f6b, type: 3}
+  m_Name: ShotgunFighter
+  m_EditorClassIdentifier: 
+  spaceshipName: ShotgunFighter
+  shipSprite: {fileID: 6120195032047525358, guid: a48f10066111d408b83e15c4f286780d, type: 3}
+  thrustSpeed: 6
+  turnSpeed: 60
+  maxVelocity: 7
+  shootInterval: 1
+  thrustLoopClip: {fileID: 0}
+  shootClip: {fileID: 0}
+  deathClip: {fileID: 0}
+  respawnClip: {fileID: 0}
+  bulletPrefab: {fileID: 6150703254227194107, guid: 40094903811e47b468ba4778bfe9ec15, type: 3}
+  pellets: 5
+  spreadAngle: 30

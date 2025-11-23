@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5254870457047511195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.55, y: 2.11, z: 0}
+  m_LocalPosition: {x: 7.73, y: 0.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 6255756714424414023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.48, y: -0.52, z: -2.19}
+  m_LocalPosition: {x: 5.62, y: -1.32, z: -2.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -92,7 +92,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.73, y: 4.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2734853181717666365}
   - {fileID: 5891231367922909824}
@@ -188,7 +188,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 4.73
+  m_Radius: 4.52
 --- !u!114 &2268933689183291641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +206,8 @@ MonoBehaviour:
   currentNode: 0
   dialogueSpot: {fileID: 2734853181717666365}
   textSpot: {fileID: 5891231367922909824}
-  dialogueCanvas: {fileID: 3464354127953653096, guid: f4dc10e24222e442ba1a282620ff9812, type: 3}
+  dialogueCanvas: {fileID: -1224407020821663544, guid: f68fecbf7648143c7a04b5b9f71e579c, type: 3}
   specialConditions: {fileID: 0}
+  events: {fileID: 0}
   moveDuration: 1.5
   disableControlsTime: 1

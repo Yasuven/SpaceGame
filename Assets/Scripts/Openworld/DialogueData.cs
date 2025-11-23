@@ -10,16 +10,21 @@ public class DialogueNode {
 public class DialogueOption
 {
     public string text;
-    public int nextNode; // -1 = end of dialogue
+    public int nextNode; 
 
     [Header("Optional Planet Progression")]
     public bool updatesPlanetNode;
     public int newPlanetNode;
+
+    [Header("Events")]
+    public bool triggersEvent;
+    public string eventId;   
+
 }
 
 
 
-[CreateAssetMenu(menuName = "Dialogue/TestDialogue")]
+[CreateAssetMenu(menuName = "Dialogue/EmptyDialogue")]
 public class DialogueData : ScriptableObject {
     public DialogueNode[] nodes;
 }

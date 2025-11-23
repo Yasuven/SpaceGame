@@ -3,78 +3,91 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
 public class Player : MonoBehaviour
 {
     [Header("References")]
-    public Bullet bulletPrefab;
     public TextMeshProUGUI timerText;
     public GameObject timer;
-
     [Header("Movement Settings")]
     public float ThrustSpeed = 10f;
     public float TurnSpeed = 100f;
     public float shipMaxVelocity = 10f;
-
     [Header("Respawn Settings")]
     public float respawnTime = 3f;
     public float invulnerabilityTime = 3f;
-
     [Header("Audio Settings")]
     public float thrustFadeSpeed = 2f;
     public AudioClip deathClip;
     public AudioClip thrustLoopClip;
     public AudioClip shootClip;
     public AudioClip respawnClip;
-
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
     private ParticleSystem _thrusterParticles;
-
     private bool _isAlive = true;
     private bool _isEjecting = false;
     [SerializeField] private bool _inOpenWorld = false;
-
-    // Input System
+    // Inputs
     public InputActionAsset PlayerInput;
     private InputAction _thrustAction;
     private InputAction _turnAction;
     private InputAction _shootAction;
     private InputAction _ejectAction;
-
-
     private float _turnDirection;
     private bool _thrusting;
-
+    // Spaceship
+    private PlayerSpaceship _spaceship;
     private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
+    {   
+
+        string scene = SceneManager.GetActiveScene().name;
+        _inOpenWorld = scene.Contains("OpenWorld");
+        // spaceship from DataCarrier
+        _spaceship = DataCarrier.playerSpaceship;
+
+        // visuals
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.sprite = _spaceship.shipSprite;
+
+        // spaceship stats
+        ThrustSpeed = _spaceship.thrustSpeed;
+        TurnSpeed = _spaceship.turnSpeed;
+        shipMaxVelocity = _spaceship.maxVelocity;
+
+        // audio
+        thrustLoopClip = _spaceship.thrustLoopClip;
+        shootClip = _spaceship.shootClip;
+        deathClip = _spaceship.deathClip;
+        respawnClip = _spaceship.respawnClip;
+
+        // components
+        _rb = GetComponent<Rigidbody2D>();
         _thrusterParticles = GetComponentInChildren<ParticleSystem>();
-        
+
+        // inputs
         _thrustAction = PlayerInput.FindAction("Thrust");
         _turnAction = PlayerInput.FindAction("Turn");
         _shootAction = PlayerInput.FindAction("Shoot");
         _ejectAction = PlayerInput.FindAction("Eject");
 
-        // Events
+        // events in asteroids minigame only 
         if (!_inOpenWorld)
         {
-            _shootAction.performed += ctx => Shoot();
+            _shootAction.performed += OnShoot;
             _ejectAction.performed += ctx => HandleEjecting();
         }
 
-        Events.OnWinningCondition += OnWin;
+        Events.OnWinningCondition += OnWin; // TODO: get rid of this, we dont have wincondtion tied to score
     }
 
     private void OnDestroy()
     {
         if (!_inOpenWorld)
         {
-            _shootAction.performed -= ctx => Shoot();
+            _shootAction.performed -= OnShoot;
             _ejectAction.performed -= ctx => HandleEjecting();
         }
+
         Events.OnWinningCondition -= OnWin;
     }
 
@@ -115,9 +128,21 @@ public class Player : MonoBehaviour
             var emission = _thrusterParticles.emission;
             emission.rateOverTime = _thrusting ? 50f : 0f;
         }
-        if (_thrusting){AudioManager.Instance.PlayLoop(thrustLoopClip, true, thrustFadeSpeed);}
-        
-        else{AudioManager.Instance.PlayLoop(thrustLoopClip, false, thrustFadeSpeed);}
+
+        if (_thrusting)
+            AudioManager.Instance.PlayLoop(thrustLoopClip, true, thrustFadeSpeed);
+        else
+            AudioManager.Instance.PlayLoop(thrustLoopClip, false, thrustFadeSpeed);
+    }
+
+    private void OnShoot(InputAction.CallbackContext ctx)
+    {
+        if (!_isAlive) return;
+
+        _spaceship.FireWeapon(transform);
+
+        if (_spaceship.shootClip != null)
+            AudioManager.Instance.PlaySound(_spaceship.shootClip);
     }
 
     private void HandleEjecting()
@@ -127,50 +152,38 @@ public class Player : MonoBehaviour
         Events.Ejecting();
     }
 
-    private void Shoot()
-    {
-        if (!_isAlive) return;
-
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-        bullet.Fire(transform.up);
-        if (shootClip != null)
-        {
-            AudioManager.Instance.PlaySound(shootClip);
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Asteroid asteroid = collision.gameObject.GetComponent<Asteroid>();
         if (asteroid != null)
         {
-            if (deathClip != null) { AudioManager.Instance.PlaySound(deathClip); }
+            if (deathClip != null)
+                AudioManager.Instance.PlaySound(deathClip);
 
             _rb.linearVelocity = Vector2.zero;
             _rb.angularVelocity = 0f;
 
             AudioManager.Instance.StopLoop();
-
             gameObject.SetActive(false);
-            _isAlive = false;
 
+            _isAlive = false;
             Events.PlayerDeath(Events.RequestLives() - 1);
+
             if (Events.RequestLives() > 0)
-            {
                 Invoke(nameof(Respawn), respawnTime);
-            }
         }
     }
 
     public void Respawn()
     {
-        if (respawnClip != null) { AudioManager.Instance.PlaySound(respawnClip); }
+        if (respawnClip != null)
+            AudioManager.Instance.PlaySound(respawnClip);
 
         transform.position = Vector3.zero;
         gameObject.layer = LayerMask.NameToLayer("Ignore Collisions");
         gameObject.SetActive(true);
-        _isAlive = true;
 
+        _isAlive = true;
         StartCoroutine(InvulnerabilityFlash());
     }
 
@@ -202,5 +215,14 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    
+    public void ApplyNewShip()
+    {
+        var ship = DataCarrier.playerSpaceship;
+
+        _spriteRenderer.sprite = ship.shipSprite;
+        ThrustSpeed = ship.thrustSpeed;
+        TurnSpeed = ship.turnSpeed;
+        shipMaxVelocity = ship.maxVelocity;
+        thrustLoopClip = ship.thrustLoopClip;
+    }
 }

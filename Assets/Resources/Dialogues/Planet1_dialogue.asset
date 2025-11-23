@@ -13,35 +13,50 @@ MonoBehaviour:
   m_Name: Planet1_dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - npcText: first
+  - npcText: 'We have a new space ship with improved RADIO TRANSLATOR to offer
+
+'
     options:
-    - text: proceed
+    - text: Cool, how much?
       nextNode: 1
       updatesPlanetNode: 1
       newPlanetNode: 1
-    - text: just exit
+      triggersEvent: 0
+      eventId: 
+    - text: Yeah, maybe later
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
-  - npcText: second
+      triggersEvent: 0
+      eventId: 
+  - npcText: Just 1000 points and new ship is yours. New weapon too. Go get points
+      shooting asteroids
     options:
-    - text: exit
-      nextNode: -1
-      updatesPlanetNode: 0
-      newPlanetNode: 0
-    - text: ask
+    - text: Got enough points
       nextNode: 2
       updatesPlanetNode: 0
       newPlanetNode: 0
-  - npcText: final
-    options:
-    - text: exit
+      triggersEvent: 0
+      eventId: 
+    - text: Okay, I will be back
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
-  - npcText: u won
+      triggersEvent: 0
+      eventId: 
+  - npcText: Here it is, enjoy! It is slow though... good luck
     options:
-    - text: thanks
+    - text: Thanks anyway
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 3
+      triggersEvent: 1
+      eventId: SHOTGUN
+  - npcText: 'Nice to see you, but we have nothing to offer. '
+    options:
+    - text: Ok, bye
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 

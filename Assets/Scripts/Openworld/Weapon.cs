@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
+// UNUSED
 public class Weapon
 {
     public string weaponName;
