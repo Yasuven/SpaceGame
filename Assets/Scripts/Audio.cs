@@ -12,7 +12,6 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource _loopSource;
 
-
     private void Awake()
 
     {

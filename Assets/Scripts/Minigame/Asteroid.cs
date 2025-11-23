@@ -18,6 +18,8 @@ public class Asteroid : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
 
+    private bool _isDestroyed = false;
+
     public void Init(AsteroidData type)
     {
         asteroidType = type;
@@ -43,6 +45,12 @@ public class Asteroid : MonoBehaviour
         transform.localScale = Vector3.one * size;
 
         _rb.mass = size;
+
+        float baseSpin = Random.Range(-30f, 30f);
+        float sizeFactor = Mathf.Clamp01(size * 0.5f);
+        float multiplier = Mathf.Lerp(0.1f, 0.5f, sizeFactor);
+
+        _rb.angularVelocity = baseSpin * multiplier;
     }
 
 
@@ -57,12 +65,14 @@ public class Asteroid : MonoBehaviour
     // Handles collision with bullets
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (_isDestroyed)return;
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
         if (bullet != null)
         {
             Health -= bullet.Damage;
             if (Health <= 0) { 
+                _isDestroyed = true;
 
                 if (explosionClips != null && explosionClips.Length > 0)
                 {int randomIndex = Random.Range(0, explosionClips.Length);AudioManager.Instance.PlaySound(explosionClips[randomIndex]);}

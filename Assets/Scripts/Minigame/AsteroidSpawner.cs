@@ -23,7 +23,7 @@ public class AsteroidSpawner : MonoBehaviour
     private WaveData[] Waves;
 
     private void Awake()
-    {
+    {   
         Events.OnLevelStart += OnLevelStart;
     }
 

@@ -148,10 +148,11 @@ public class OpenWorldInit : MonoBehaviour
 
         string eventsPath = $"PlanetEvents/{planetId}_events";
         PlanetEvents events = Resources.Load<PlanetEvents>(eventsPath);
-        if (events != null)
+        if (events != null){
             Debug.Log("we should have loaded events");
             planetComp.events = events;
-
+        }else{Debug.LogWarning($"No events found for {planetId} at path: {eventsPath}");}
+        
     }
 
     private PlanetState CreatePlanetState(Planet planetComp)

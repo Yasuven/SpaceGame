@@ -9,7 +9,6 @@ public class ScenarioController : MonoBehaviour
     public LevelData DefaultLevel;
 
     public int lives = 3;
-    public int score = 0;
 
     private void Awake()
     {
@@ -36,7 +35,7 @@ public class ScenarioController : MonoBehaviour
     private IEnumerator Start()
     {
         Events.SetLives(lives);
-        Events.SetScore(score);
+        Events.SetScore(DataCarrier.points);
 
         yield return null; // wait 1 frame so all Awake() methods run
 
@@ -55,12 +54,12 @@ public class ScenarioController : MonoBehaviour
 
     private void OnSetScore(int amount)
     {
-        score = amount;
+        DataCarrier.points = amount;
     }
 
     private int OnRequestScore()
     {
-        return score;
+        return DataCarrier.points;
     }
 
     // Handles player death event
@@ -82,7 +81,7 @@ public class ScenarioController : MonoBehaviour
     private void OnAsteroidDestroyed(Asteroid asteroid)
     {
 
-        int addScore = 0;
+        int addScore;
 
         if (asteroid.size < 0.75f)
             addScore = asteroid.ScoreValues[0];
@@ -91,8 +90,8 @@ public class ScenarioController : MonoBehaviour
         else
             addScore = asteroid.ScoreValues[2];
 
-        score += addScore;
-        Events.SetScore(score);
+        DataCarrier.points += addScore;
+        Events.SetScore(DataCarrier.points);
     
     // When score reaches 2000 or more trigger gameover
     // This is a temporary win condition

@@ -39,11 +39,9 @@ public class Player : MonoBehaviour
     private PlayerSpaceship _spaceship;
     private void Awake()
     {   
-
-        string scene = SceneManager.GetActiveScene().name;
-        _inOpenWorld = scene.Contains("OpenWorld");
         // spaceship from DataCarrier
         _spaceship = DataCarrier.playerSpaceship;
+        _spaceship.ResetShootTimer();
 
         // visuals
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -70,14 +68,35 @@ public class Player : MonoBehaviour
         _shootAction = PlayerInput.FindAction("Shoot");
         _ejectAction = PlayerInput.FindAction("Eject");
 
-        // events in asteroids minigame only 
-        if (!_inOpenWorld)
-        {
-            _shootAction.performed += OnShoot;
-            _ejectAction.performed += ctx => HandleEjecting();
-        }
+    }
 
-        Events.OnWinningCondition += OnWin; // TODO: get rid of this, we dont have wincondtion tied to score
+        private void OnEnable()
+        {
+        _thrustAction = PlayerInput.FindAction("Thrust");
+        _turnAction = PlayerInput.FindAction("Turn");
+        _shootAction = PlayerInput.FindAction("Shoot");
+        _ejectAction = PlayerInput.FindAction("Eject");
+
+        _thrustAction?.Enable();
+        _turnAction?.Enable();
+        _shootAction?.Enable();
+        _ejectAction?.Enable();
+
+        _shootAction.performed += OnShoot;
+        _ejectAction.performed += HandleEjecting;
+
+    }
+
+    private void OnDisable()
+    {
+
+        _shootAction.performed -= OnShoot;
+        _ejectAction.performed -= HandleEjecting;
+
+        _thrustAction?.Disable();
+        _turnAction?.Disable();
+        _shootAction?.Disable();
+        _ejectAction?.Disable();
     }
 
     private void OnDestroy()
@@ -85,7 +104,7 @@ public class Player : MonoBehaviour
         if (!_inOpenWorld)
         {
             _shootAction.performed -= OnShoot;
-            _ejectAction.performed -= ctx => HandleEjecting();
+            _ejectAction.performed -= HandleEjecting;
         }
 
         Events.OnWinningCondition -= OnWin;
@@ -118,7 +137,7 @@ public class Player : MonoBehaviour
     private void HandleInput()
     {
         _thrusting = _thrustAction.ReadValue<float>() > 0.5f;
-        _turnDirection = _turnAction.ReadValue<float>();
+        _turnDirection = _turnAction.ReadValue<float>();    
     }
 
     private void UpdateThrusterEffects()
@@ -138,14 +157,15 @@ public class Player : MonoBehaviour
     private void OnShoot(InputAction.CallbackContext ctx)
     {
         if (!_isAlive) return;
+        if (_inOpenWorld) return;
 
-        _spaceship.FireWeapon(transform);
+        bool fired = _spaceship.FireWeapon(transform);
 
-        if (_spaceship.shootClip != null)
+        if (fired && _spaceship.shootClip != null)
             AudioManager.Instance.PlaySound(_spaceship.shootClip);
     }
 
-    private void HandleEjecting()
+    private void HandleEjecting(InputAction.CallbackContext ctx)
     {
         if (_isEjecting) return;
         _isEjecting = true;

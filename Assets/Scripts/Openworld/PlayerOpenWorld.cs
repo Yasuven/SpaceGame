@@ -66,10 +66,12 @@ public class PlayerOpenWorld : MonoBehaviour
         _shootAction = PlayerInput.FindAction("Shoot");
         _ejectAction = PlayerInput.FindAction("Eject");
 
+        _shootAction.Disable();
+        _ejectAction.Disable();
+
         // events in asteroids minigame only 
         if (!_inOpenWorld)
         {
-            _shootAction.performed += OnShoot;
             _ejectAction.performed += ctx => HandleEjecting();
         }
 

@@ -20,7 +20,7 @@ public abstract class PlayerSpaceship : ScriptableObject
     public AudioClip deathClip;
     public AudioClip respawnClip;
 
-    public abstract void FireWeapon(Transform firePoint);
+    public abstract bool FireWeapon(Transform firePoint);
 
     protected bool CanShoot()
     {
@@ -30,5 +30,10 @@ public abstract class PlayerSpaceship : ScriptableObject
     protected void RegisterShot()
     {
         _lastShotTime = Time.time;
+    }
+
+    public void ResetShootTimer()
+    {
+        _lastShotTime = -999f;
     }
 }

@@ -13,6 +13,17 @@ public class MinigameUIManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("[MinigameUIManager] Awake()");
+
+        // Ensure only one instance exists
+        var managers = FindObjectsOfType<MinigameUIManager>();
+        if (managers.Length > 1)
+        {
+            Debug.LogWarning("DESTROYING DUPLICATE MinigameUIManager!");
+            Destroy(gameObject);
+            return;
+        }
+
         Events.OnSetLives += OnSetLives;
         Events.OnSetScore += OnSetScore;
         Events.OnEjecting += OnEjecting;
@@ -20,6 +31,8 @@ public class MinigameUIManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        Debug.Log("[MinigameUIManager] Awake()");
+
         Events.OnSetLives -= OnSetLives;
         Events.OnSetScore -= OnSetScore;
         Events.OnEjecting -= OnEjecting;
@@ -27,6 +40,8 @@ public class MinigameUIManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("[MinigameUIManager] Start()");
+
         timerText.gameObject.SetActive(false);
     }
 
@@ -40,7 +55,20 @@ public class MinigameUIManager : MonoBehaviour
 
     private void OnSetScore(int amount)
     {
+        Debug.Log("[MinigameUIManager] OnSetScore(" + amount + ")");
+
         scoreText.text = amount.ToString();
+
+        // Don't reset global score on 0
+        if (amount > 0)
+        {
+            DataCarrier.points = amount;
+            Debug.Log("[GLOBAL] Updated to: " + DataCarrier.points);
+        }
+        else
+        {
+            Debug.Log("[GLOBAL] Ignored amount = 0");
+        }
     }
 
     private void OnEjecting()
@@ -62,7 +90,6 @@ public class MinigameUIManager : MonoBehaviour
 
         timerText.gameObject.SetActive(false);
         int parsedScore = int.Parse(scoreText.text);
-        DataCarrier.points += parsedScore; // assign achiveved points to data carrier
         SceneManager.LoadScene("OpenWorld");
     }
 }

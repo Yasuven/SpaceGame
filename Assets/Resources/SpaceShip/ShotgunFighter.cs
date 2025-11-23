@@ -7,9 +7,9 @@ public class ShotgunFighter : PlayerSpaceship
     public int pellets = 5;
     public float spreadAngle = 30f;
 
-    public override void FireWeapon(Transform firePoint)
+    public override bool FireWeapon(Transform firePoint)
     {
-        if (!CanShoot()) return;
+        if (!CanShoot()) return false;
 
         float step = spreadAngle / (pellets - 1);
         float startAngle = -spreadAngle / 2f;
@@ -24,5 +24,6 @@ public class ShotgunFighter : PlayerSpaceship
         }
 
         RegisterShot();
+        return true;
     }
 }

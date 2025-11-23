@@ -5,14 +5,15 @@ public class BasicFighter : PlayerSpaceship
 {
     public Bullet bulletPrefab;
 
-    public override void FireWeapon(Transform firePoint)
+    public override bool FireWeapon(Transform firePoint)
     {
-        if (!CanShoot()) return;
+        if (!CanShoot()) return false;
 
         Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Debug.Log("in FireWeapons");
         bullet.Fire(firePoint.up);
 
         RegisterShot();
+        return true;
     }
 }

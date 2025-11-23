@@ -18,8 +18,8 @@ MonoBehaviour:
   turnSpeed: 100
   maxVelocity: 10
   shootInterval: 0.1
-  thrustLoopClip: {fileID: 0}
-  shootClip: {fileID: 0}
-  deathClip: {fileID: 0}
-  respawnClip: {fileID: 0}
+  thrustLoopClip: {fileID: 8300000, guid: 23112b3ad6710864cbba2754da0061d3, type: 3}
+  shootClip: {fileID: 8300000, guid: c28244c98df1d9b419ea7c02d562c4de, type: 3}
+  deathClip: {fileID: 8300000, guid: 4ffa7a2523548f9459e38295a31c43e9, type: 3}
+  respawnClip: {fileID: 8300000, guid: 3fc4dfac8b98afe43a4b675415ac30d5, type: 3}
   bulletPrefab: {fileID: 6150703254227194107, guid: 40094903811e47b468ba4778bfe9ec15, type: 3}
