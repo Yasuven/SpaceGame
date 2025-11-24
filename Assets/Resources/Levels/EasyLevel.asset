@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - NumberOfEnemies: 3
-    spawnRate: 2
-    spawnAmount: 1
+    spawnRate: 1
+    spawnAmount: 2
     NumberOfEnemiesGrowth: 4
-    SpawnRateGrowth: 0.2
+    SpawnRateGrowth: 0.3
     SpawnAmountGrowth: 1
-    maxEnemies: 20
+    maxEnemies: 25
     AsteroidData: {fileID: 11400000, guid: 54b17550b38f55c4386c264d2a8f6f71, type: 2}
   - NumberOfEnemies: 3
     spawnRate: 2
