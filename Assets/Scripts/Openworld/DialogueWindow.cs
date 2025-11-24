@@ -19,7 +19,6 @@ public class DialogueWindow : MonoBehaviour
     private bool isActive = false;
     private Planet currentPlanet;
     private List<TextMeshProUGUI> optionTexts = new List<TextMeshProUGUI>();
-
     public DialogueData dialogueData;
 
     public void StartDialogue(DialogueData dialogue, int startNode = 0, Planet planet = null)
@@ -89,7 +88,19 @@ public class DialogueWindow : MonoBehaviour
         var option = node.options[selectedOption];
 
         ApplyPlanetProgress(option);
+        int currentNode = currentPlanet.currentNode;
         TriggerDialogueEvents(option); 
+        int newNode = currentPlanet.currentNode;
+
+       if (currentNode != newNode)
+        {
+            if (newNode == -1)
+                EndDialogue();
+            else
+                GoToNextNode(newNode);
+            return;
+        }
+
 
         if (option.nextNode == -1)
             EndDialogue();
