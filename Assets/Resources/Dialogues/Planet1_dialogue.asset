@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Planet1_dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - npcText: 'We have a new space ship with improved RADIO TRANSLATOR to offer!
+  - npcText: 'We have a new space ship with improved RADIO TRANSLATOR to offer
 
 '
     options:
@@ -29,11 +29,11 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: Just 1000 points and new ship is yours. New weapon too. Go get points
+  - npcText: Just 3000 points and new ship is yours. New weapon too. Go get points
       shooting asteroids
     options:
     - text: I have enough points
-      nextNode: 4
+      nextNode: 2
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 1

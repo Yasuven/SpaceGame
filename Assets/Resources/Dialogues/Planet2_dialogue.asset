@@ -35,7 +35,7 @@ MonoBehaviour:
       newPlanetNode: 2
       triggersEvent: 0
       eventId: 
-  - npcText: Exchange 4000 points for a laser ship?
+  - npcText: Exchange 12 000 points for a laser ship?
     options:
     - text: Let's do it
       nextNode: -1

@@ -8,15 +8,12 @@ public class Planet1_Events : PlanetEvents
         switch (eventId)
         {
             case "CHECKPOINTS":
-                if (DataCarrier.points >= 1000)
+                if (DataCarrier.points >= 3000)
                 {
                     planet.currentNode = 2;
                     break;
                 }
                 planet.currentNode = 4;
-                break;
-            case "NEW_SPACESHIP":
-                Debug.Log("we got a new spaceship");
                 break;
 
             case "SHOTGUN":
@@ -25,7 +22,7 @@ public class Planet1_Events : PlanetEvents
                 DataCarrier.playerSpaceship = newShip;
                 var playerOW = FindFirstObjectByType<Player>();
                 playerOW.ApplyNewShip();
-                DataCarrier.points -= 1000;
+                DataCarrier.points -= 3000;
                 
                 break;
 
