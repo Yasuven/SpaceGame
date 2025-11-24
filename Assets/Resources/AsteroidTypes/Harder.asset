@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Harder
   m_EditorClassIdentifier: 
   AsteroidSprites:
-  - {fileID: 21300000, guid: d544feb63b186dd45b32d12cfc6762bf, type: 3}
-  - {fileID: 21300000, guid: 44d8f279ef345c442ae875caa0c26731, type: 3}
-  - {fileID: 21300000, guid: cfa9b832ea5877745a96e61e8ffaeca2, type: 3}
-  - {fileID: 21300000, guid: 4cc6aa9aa8107734da22c80d289cff98, type: 3}
+  - {fileID: 5719226520552016742, guid: 8304c1741b8d943588f09d20a8eed550, type: 3}
+  - {fileID: 21300000, guid: 5a1917322cb295449bf7552a48bba38e, type: 3}
+  - {fileID: 2307825565598778442, guid: 291efcbad2c084103ae27c6414d5553a, type: 3}
+  - {fileID: 2307825565598778442, guid: 291efcbad2c084103ae27c6414d5553a, type: 3}
   Health: 2
   ScoreValues: 960000004b00000028000000

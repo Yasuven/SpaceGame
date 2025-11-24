@@ -60,7 +60,7 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: 'Come back when you have 1000 points to trade. '
+  - npcText: 'Come back when you have enough points to trade. '
     options:
     - text: Yeah, sure
       nextNode: -1
