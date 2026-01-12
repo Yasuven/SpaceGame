@@ -51,6 +51,7 @@ MonoBehaviour:
   maxLifetime: 10
   Damage: 1
   explosionPrefab: {fileID: 6674609322209096390, guid: 875dfcaa53a55ed438e6a7fa1aadebe1, type: 3}
+  explosionPool: {fileID: 0}
 --- !u!212 &6895893605182395078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -177,5 +178,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.2, y: 1.2}
   m_EdgeRadius: 0

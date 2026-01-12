@@ -15,6 +15,8 @@ public class Asteroid : MonoBehaviour
     public int[] ScoreValues;
     public AsteroidData asteroidType;
 
+    private AsteroidSpawner _spawner;
+
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
 
@@ -53,6 +55,11 @@ public class Asteroid : MonoBehaviour
         _rb.angularVelocity = baseSpin * multiplier;
     }
 
+    public void RegisterSpawner(AsteroidSpawner spawner)
+    {
+        _spawner = spawner;
+    }
+
 
     // Sets the trajectory of the asteroid
     public void SetTrajectory(Vector2 direction)
@@ -83,6 +90,7 @@ public class Asteroid : MonoBehaviour
                     CreateSplit();
                 }
                 Events.AsteroidDestroyed(this);
+                _spawner.UnregisterAsteroid(this);
                 Destroy(gameObject);
             }
         }
@@ -96,6 +104,10 @@ public class Asteroid : MonoBehaviour
         position += Random.insideUnitCircle * 0.5f;
 
         Asteroid half = Instantiate(this, position, transform.rotation);
+
+        half.RegisterSpawner(_spawner);
+        _spawner.RegisterAsteroid(half);
+
         half.size = size / 2f;
         half.transform.localScale = Vector3.one * half.size;
 

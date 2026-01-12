@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
@@ -6,7 +7,7 @@ public class AsteroidSpawner : MonoBehaviour
     public Asteroid asteroidPrefab;
     private AsteroidData asteroidData;
 
-    public float trajectoryVariance = 15f;
+    public float trajectoryVariance = 30f;
     public float NumberOfEnemiesPerWave = 5;
     public float spawnRate = 2f;
     public float spawnDistance = 12f;
@@ -17,6 +18,8 @@ public class AsteroidSpawner : MonoBehaviour
     public int SpawnAmountGrowth = 1;
     public int MaxEnemies = 100;
 
+    private List<Asteroid> _trackedAsteroids = new List<Asteroid>();
+
     private int _currentWaveIndex = 0;
     private int _totalSpawnedThisWave = 0;
 
@@ -25,11 +28,18 @@ public class AsteroidSpawner : MonoBehaviour
     private void Awake()
     {   
         Events.OnLevelStart += OnLevelStart;
+        Events.OnPlayerDeath += OnPlayerDeath;
+    }
+
+    private void Events_OnAsteroidDestroyed(Asteroid obj)
+    {
+        throw new System.NotImplementedException();
     }
 
     private void OnDestroy()
     {
         Events.OnLevelStart -= OnLevelStart;
+        Events.OnPlayerDeath -= OnPlayerDeath;
     }
 
     public void OnLevelStart(LevelData level)
@@ -39,6 +49,37 @@ public class AsteroidSpawner : MonoBehaviour
         LoadWaveData(0);
 
         StartCoroutine(WaveLoop());
+    }
+
+    private void OnPlayerDeath(int livesLeft)
+    {
+        ClearAllAsteroids();
+    }
+
+    public void ClearAllAsteroids()
+    {
+        // We iterate backwards through the list to safely destroy objects
+        for (int i = _trackedAsteroids.Count - 1; i >= 0; i--)
+        {
+            if (_trackedAsteroids[i] != null)
+            {
+                Destroy(_trackedAsteroids[i].gameObject);
+            }
+        }
+        _trackedAsteroids.Clear();
+    }
+
+    public void RegisterAsteroid(Asteroid asteroid)
+    {
+        if (!_trackedAsteroids.Contains(asteroid))
+        {
+            _trackedAsteroids.Add(asteroid);
+        }
+    }
+
+    public void UnregisterAsteroid(Asteroid asteroid)
+    {
+        _trackedAsteroids.Remove(asteroid);
     }
 
     private void LoadWaveData(int waveIndex)
@@ -96,6 +137,9 @@ public class AsteroidSpawner : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
 
         Asteroid asteroid = Instantiate(asteroidPrefab, spawnPoint, rotation);
+
+        asteroid.RegisterSpawner(this);
+        _trackedAsteroids.Add(asteroid);
 
         asteroid.Init(asteroidData);
 

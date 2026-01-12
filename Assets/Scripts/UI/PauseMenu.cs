@@ -30,7 +30,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Exit()
     {
-        //TODO
-        Debug.Log("Quit Game - TODO");
+        Application.Quit();
     }
 }

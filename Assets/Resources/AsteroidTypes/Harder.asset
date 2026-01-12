@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AsteroidSprites:
   - {fileID: 5719226520552016742, guid: 8304c1741b8d943588f09d20a8eed550, type: 3}
-  - {fileID: 21300000, guid: 5a1917322cb295449bf7552a48bba38e, type: 3}
-  - {fileID: 2307825565598778442, guid: 291efcbad2c084103ae27c6414d5553a, type: 3}
+  - {fileID: 7930957689908725263, guid: ca352fdb20a54437396d648e6a67eb60, type: 3}
+  - {fileID: -3305735930898870840, guid: 82319f2797ac741d096e433d0ed117ba, type: 3}
   - {fileID: 2307825565598778442, guid: 291efcbad2c084103ae27c6414d5553a, type: 3}
   Health: 2
   ScoreValues: 960000004b00000028000000
