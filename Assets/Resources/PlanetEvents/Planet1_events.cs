@@ -7,6 +7,16 @@ public class Planet1_Events : PlanetEvents
     {
         switch (eventId)
         {
+            case "CHECK_IF_SHOTGUN":
+                if (DataCarrier.playerSpaceship.spaceshipName == "ShotgunFighter")
+                {
+                    Debug.LogError("Player is currently flying spaceship called " + DataCarrier.playerSpaceship.spaceshipName);
+                    planet.currentNode = 6;
+                    break;
+                }
+                planet.currentNode = 5;
+                break;
+
             case "CHECKPOINTS":
                 if (DataCarrier.points >= 3000)
                 {

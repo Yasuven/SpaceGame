@@ -50,8 +50,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 1
       eventId: SPAWN_TUTORIAL_ASTEROIDS
-  - npcText: "Some do, some don\u2019t, but what matters most is entering asteroid
-      areas and blasting asteroids like the one behind you."
+  - npcText: "Some do, some don\u2019t, but what matters most blasting asteroids
+      in asteroid areas. Like the one that just spawned behind your back. "
     options:
     - text: ...
       nextNode: 4
