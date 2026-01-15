@@ -15,6 +15,10 @@ public class Planet : MonoBehaviour
     public PlanetCondition specialConditions;
     public PlanetEvents events;
 
+    [Header("Interaction Cooldown")]
+    [SerializeField] private float reenterCooldown = 5f;
+    private float nextAllowedInteractTime = 0f;
+
     [Header("Timing")]
     public float moveDuration = 1.5f;
     public float disableControlsTime = 1f;
@@ -33,6 +37,9 @@ public class Planet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
+        if (Time.time < nextAllowedInteractTime) return;
+
         Debug.Log("Current node is: " + currentNode);
         if (other.CompareTag("Player") && !isPlayerInteracting)
         {
@@ -56,15 +63,14 @@ public class Planet : MonoBehaviour
         var rb = player.GetComponent<Rigidbody2D>();
 
         AudioClip thrustClip = null;
-    float fadeDuration = 0f;
-    if (playerScript != null)
-    {
-        thrustClip = playerScript.thrustLoopClip;
-        fadeDuration = 1f / playerScript.thrustFadeSpeed; 
-        playerScript.enabled = false;
-      }
+        float fadeDuration = 0f;
+        if (playerScript != null)
+        {
+            thrustClip = playerScript.thrustLoopClip;
+            fadeDuration = 1f / playerScript.thrustFadeSpeed; 
+            playerScript.enabled = false;
+        }
 
-        if (playerScript) playerScript.enabled = false;
         if (rb)
         {
             rb.linearVelocity = Vector2.zero;
@@ -72,22 +78,22 @@ public class Planet : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
 
-    if (AudioManager.Instance != null && thrustClip != null)
-    {
-        float startVolume = AudioManager.Instance._loopSource.volume;
-        float elapsedFade = 0f;
-        
-        while (elapsedFade < fadeDuration)
+        if (AudioManager.Instance != null && thrustClip != null)
         {
-            float currentVolume = Mathf.Lerp(startVolume, 0f, elapsedFade / fadeDuration);
-            AudioManager.Instance._loopSource.volume = currentVolume;
+            float startVolume = AudioManager.Instance._loopSource.volume;
+            float elapsedFade = 0f;
             
-            elapsedFade += Time.deltaTime;
-            yield return null;
-        }
+            while (elapsedFade < fadeDuration)
+            {
+                float currentVolume = Mathf.Lerp(startVolume, 0f, elapsedFade / fadeDuration);
+                AudioManager.Instance._loopSource.volume = currentVolume;
+                
+                elapsedFade += Time.deltaTime;
+                yield return null;
+            }
 
-        AudioManager.Instance.StopLoop(); 
-    }
+            AudioManager.Instance.StopLoop(); 
+        }
 
         Vector3 startPos = player.position;
         Vector3 targetPos = dialogueSpot != null ? dialogueSpot.position : transform.position;
@@ -127,5 +133,6 @@ public class Planet : MonoBehaviour
         if (rb) rb.bodyType = RigidbodyType2D.Dynamic;
 
         isPlayerInteracting = false;
+        nextAllowedInteractTime = Time.time + reenterCooldown;
     }
 }

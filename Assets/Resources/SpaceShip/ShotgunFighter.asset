@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceshipName: ShotgunFighter
   shipSprite: {fileID: 6120195032047525358, guid: a48f10066111d408b83e15c4f286780d, type: 3}
-  thrustSpeed: 5
-  turnSpeed: 90
+  thrustSpeed: 7
+  turnSpeed: 140
   maxVelocity: 7
   shootInterval: 1.2
   thrustLoopClip: {fileID: 8300000, guid: 23112b3ad6710864cbba2754da0061d3, type: 3}

@@ -187,7 +187,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ed61be8218eb44a290c8fb07869cdd3
+      spriteID: b9af533effa664b58bad4d27b50825bf
       internalID: 611333419
       vertices: []
       indices: 
@@ -209,7 +209,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd4cfd8eeb7df4036a35fc0e6bef948d
+      spriteID: bfad93604193948b7b0abeb4e1bbc061
       internalID: -910825003
       vertices: []
       indices: 
@@ -231,8 +231,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91040c3ab7b8a4335bc3a4f2d376c8e6
+      spriteID: 114ca1ee7e51e48ad80fb183c287b16a
       internalID: -609520822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spriteList_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0476a9a19303a4f79a90ecead09195b5
+      internalID: -211659887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spriteList_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f1624ba676e4cc3a3a0d2e4ee3d173
+      internalID: 1815646371
       vertices: []
       indices: 
       edges: []
@@ -257,6 +301,8 @@ TextureImporter:
       spriteList_3: 611333419
       spriteList_4: -910825003
       spriteList_5: -609520822
+      spriteList_6: -211659887
+      spriteList_7: 1815646371
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
