@@ -42,7 +42,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: Here it is. Enjoy. It is slow, though. Good luck.
+  - npcText: Here it is. Enjoy. It is a bit slow, though. Also we heard there is
+      a planet to the left interested in business. Check them out. Good luck.
     options:
     - text: Thanks anyway
       nextNode: -1
@@ -50,9 +51,9 @@ MonoBehaviour:
       newPlanetNode: 3
       triggersEvent: 1
       eventId: SHOTGUN
-  - npcText: Hello again!
+  - npcText: Oh, you again.
     options:
-    - text: 'Oh, hi. '
+    - text: Yeah, hello.
       nextNode: 5
       updatesPlanetNode: 0
       newPlanetNode: 0

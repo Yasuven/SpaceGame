@@ -14,7 +14,8 @@ public class Planet : MonoBehaviour
     public DialogueWindow dialogueCanvas;  // world-space prefab reference
     public PlanetCondition specialConditions;
     public PlanetEvents events;
-
+    public bool haveContacted = false;
+    public int specialValue = 0;
     [Header("Interaction Cooldown")]
     [SerializeField] private float reenterCooldown = 5f;
     private float nextAllowedInteractTime = 0f;
@@ -37,16 +38,15 @@ public class Planet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        Debug.Log("Current spaceship is: " + DataCarrier.playerSpaceship.spaceshipName);
         if (Time.time < nextAllowedInteractTime) return;
-
         Debug.Log("Current node is: " + currentNode);
         if (other.CompareTag("Player") && !isPlayerInteracting)
         {
             if (specialConditions != null)
             {
                 int result = specialConditions.VerifyConditions(this);
-                if (result > 0)
+                if (result >= 0)
                 {
                     currentNode = result;
                     Debug.Log($"[Planet] Condition triggered, starting from node {currentNode}");

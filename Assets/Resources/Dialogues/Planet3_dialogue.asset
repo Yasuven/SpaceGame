@@ -141,8 +141,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 1
       eventId: TUTORIAL_PASSED
-  - npcText: Some planets do not speak your language, so you may need a ship with
-      a translator.
+  - npcText: 'Some planets do not speak your language, so you may need a ship with
+      a translator. There is a planet upwards from here that speaks your language. '
     options:
     - text: And my next goal is?
       nextNode: 14
@@ -150,8 +150,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: "Explore space. I do not know. This is your life. If you want a dorky
-      win condition, reach 100,000 points and come back. And do not return with questions
+  - npcText: "Explore space, go upward.I do not know. If you want a dorky win condition
+      \u2013\_reach 100,000 points and come back. And do not return with questions
       \u2013\_I do not speak your language."
     options:
     - text: "What do you mean? You\u2019re speaking it right now."
@@ -160,8 +160,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: "That\u2019s the catch. I only know the lines before this, and this
-      one: \u2018bring me 100,000 points to win.\u2019 Good luck. Bye."
+  - npcText: "That\u2019s the catch. I only know the phrases that I have told before
+      this. Good luck. Bye."
     options:
     - text: Uhm... ok, bye then.
       nextNode: -1
@@ -175,7 +175,7 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: "\xD6\xF6 \xE4\xE4\xE4\xFC\xF6\xE4\xF6? 10,000 \xF5\xE4\xE4\xFC\xF6\xF6"
+  - npcText: "\xD6\xF6 \xE4\xE4\xE4\xFC\xF6\xE4\xF6? 100,000 \xF5\xE4\xE4\xFC\xF6\xF6"
     options:
     - text: 'Okay, got it. Have a nice day then. '
       nextNode: -1
@@ -183,7 +183,7 @@ MonoBehaviour:
       newPlanetNode: 18
       triggersEvent: 0
       eventId: 
-  - npcText: "\xE4\xF5\xF6 10,000 \xF6\xF6\xE4\xF5\xF6\xFC? "
+  - npcText: "\xE4\xF5\xF6 100,000 \xF6\xF6\xE4\xF5\xF6\xFC? "
     options:
     - text: 'Yeah, here are your points. '
       nextNode: 18
@@ -197,7 +197,7 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 1
       eventId: CHECKPOINTS10000
-  - npcText: "\xF5. 10,000"
+  - npcText: "\xF5. 100,000"
     options:
     - text: Mkay, you are right...
       nextNode: -1

@@ -21,31 +21,141 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: Oh. Hi. Now we understand eachother.
+  - npcText: Hi. Now we understand eachother.
     options:
-    - text: Yes, much better
+    - text: Much better.
       nextNode: 2
       updatesPlanetNode: 1
       newPlanetNode: 2
-      triggersEvent: 0
-      eventId: 
-    - text: Cool. See you soon
+      triggersEvent: 1
+      eventId: HAVECONTACTED
+    - text: Yes, very nice, but I have to go now.
       nextNode: -1
       updatesPlanetNode: 1
       newPlanetNode: 2
-      triggersEvent: 0
-      eventId: 
-  - npcText: Exchange 12 000 points for a laser ship?
+      triggersEvent: 1
+      eventId: HAVECONTACTED
+  - npcText: We have an interesting offer, but we cannot disclose it yet. Show us
+      you are a serious asteroid destroyer. Do you have at least 6,000 points right
+      now?
     options:
-    - text: Let's do it
-      nextNode: -1
+    - text: 'Yes. '
+      nextNode: 3
       updatesPlanetNode: 0
       newPlanetNode: 3
+      triggersEvent: 1
+      eventId: CHECK_6000
+    - text: 'Not yet. '
+      nextNode: 6
+      updatesPlanetNode: 1
+      newPlanetNode: 2
       triggersEvent: 0
       eventId: 
-    - text: Cool. See you soon
+  - npcText: Good. We are willing to purchase your spaceship, the Shotgun. Either
+      in exchange for our experimental ship or for 5,000 points. What do you think?
+    options:
+    - text: 'Exchange for the experemental ship.  '
+      nextNode: 7
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: EXPERIMENTAL_SHIP
+    - text: Sell for 5000 points.
+      nextNode: 7
+      updatesPlanetNode: 1
+      newPlanetNode: 2
+      triggersEvent: 1
+      eventId: SELL_5000
+    - text: 'Not right now. '
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 5
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'The offer is still in power. We could buy some Shotguns... anytime
+      you have one to sell, we will accept it. '
+    options:
+    - text: 'Exchange for the experemental ship.  '
+      nextNode: 7
+      updatesPlanetNode: 1
+      newPlanetNode: 4
+      triggersEvent: 1
+      eventId: EXPERIMENTAL_SHIP
+    - text: Sell for 5000 points.
+      nextNode: 7
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: SELL_5000
+    - text: 'Sorry, not right now. '
+      nextNode: 5
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'Alright. Maybe next time. '
+    options:
+    - text: 'See you. '
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 4
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'Gather 6000 and then we talk. '
+    options:
+    - text: 'Alright. I will be back. '
       nextNode: -1
       updatesPlanetNode: 1
       newPlanetNode: 2
+      triggersEvent: 0
+      eventId: 
+  - npcText: Pleasure having business with you.
+    options:
+    - text: 'Until next time. '
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 4
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'Ok. We don''t buy any more Shotguns. But we are always happy to exchange
+      one for our experimental ship. '
+    options:
+    - text: 'Exchange. '
+      nextNode: 10
+      updatesPlanetNode: 1
+      newPlanetNode: 8
+      triggersEvent: 1
+      eventId: EXPERIMENTAL_SHIP
+    - text: 'Until next time. '
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 8
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'You know... I think this was the last one we purchased. We can''t buy
+      any more. Next time we can exchange it for our experimental ship. '
+    options:
+    - text: 'Alright. '
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 8
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'Pleasure having business with you. As always. '
+    options:
+    - text: 'Goodbye. '
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 8
+      triggersEvent: 0
+      eventId: 
+  - npcText: Ah, our fellow spaceship. We hope you like it. We also heard that in
+      the lower-left direction there is a planet with a master who may be interested
+      in developing this ship. Perhaps you should explore
+    options:
+    - text: 'Sounds interesting. Thanks. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
       triggersEvent: 0
       eventId: 

@@ -10,7 +10,6 @@ public class Planet1_Events : PlanetEvents
             case "CHECK_IF_SHOTGUN":
                 if (DataCarrier.playerSpaceship.spaceshipName == "ShotgunFighter")
                 {
-                    Debug.LogError("Player is currently flying spaceship called " + DataCarrier.playerSpaceship.spaceshipName);
                     planet.currentNode = 6;
                     break;
                 }
@@ -27,7 +26,11 @@ public class Planet1_Events : PlanetEvents
                 break;
 
             case "SHOTGUN":
-             
+                if (DataCarrier.points < 3000)
+                {
+                    planet.currentNode = 4;
+                    break;
+                }
                 var newShip = Resources.Load<PlayerSpaceship>("SpaceShip/ShotgunFighter");
                 DataCarrier.playerSpaceship = newShip;
                 var playerOW = FindFirstObjectByType<Player>();
