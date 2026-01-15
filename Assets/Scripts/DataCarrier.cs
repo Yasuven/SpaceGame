@@ -9,6 +9,7 @@ public static class DataCarrier
     public static bool namesWereAssigned = false;
     public static List<PlanetState> planetStates = new List<PlanetState>();
     public static List<Planet> planets = new List<Planet>();
+    public static bool tutorialPassed = false;
     public static Dictionary<string, bool> asteroidAreas = new Dictionary<string, bool>
     {
         { "Area1", true },

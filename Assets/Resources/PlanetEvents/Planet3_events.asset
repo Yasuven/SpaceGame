@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8183b77fe6a4ddf9b8358399b820d4, type: 3}
   m_Name: Planet3_events
   m_EditorClassIdentifier: 
+  asteroidAreaPrefab: {fileID: 1000451069857099793, guid: 7dda13fb770244ccc87cf8dfe4b34ce2, type: 3}

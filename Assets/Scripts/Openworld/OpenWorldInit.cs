@@ -47,6 +47,9 @@ public class OpenWorldInit : MonoBehaviour
         {
             string planetId = marker.name.Replace("_location", "");
 
+            if (!DataCarrier.tutorialPassed && planetId != "Planet3")
+                continue;
+
             GameObject planetObj = SpawnPlanet(planetId, marker.position, marker.rotation);
             if (planetObj == null)
                 continue;

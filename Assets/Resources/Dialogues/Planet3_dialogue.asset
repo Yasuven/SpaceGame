@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: Planet3_dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - npcText: 'Hello there
-
-'
+  - npcText: "Hello there stranger. Hit 'ENTER' to reply. \n"
     options:
-    - text: Hi
+    - text: Oh. Hello.
       nextNode: 1
       updatesPlanetNode: 0
       newPlanetNode: 0
@@ -31,16 +29,29 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: Yes. You were chosen to destroy asteroids and score points.
+  - npcText: You were chosen to destroy asteroids. You decide little, but sometimes
+      you can choose a reply using ARROW UP, ARROW DOWN, W, or D.
     options:
-    - text: Pretty straightforward.
+    - text: Do all
       nextNode: 3
       updatesPlanetNode: 0
       newPlanetNode: 0
-      triggersEvent: 0
-      eventId: 
-  - npcText: Yes it is. Roam around the space, enter asteroid areas and go do your
-      job.
+      triggersEvent: 1
+      eventId: SPAWN_TUTORIAL_ASTEROIDS
+    - text: my choices
+      nextNode: 3
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: SPAWN_TUTORIAL_ASTEROIDS
+    - text: mean something?
+      nextNode: 3
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: SPAWN_TUTORIAL_ASTEROIDS
+  - npcText: "Some do, some don\u2019t, but what matters most is entering asteroid
+      areas and blasting asteroids like the one behind you."
     options:
     - text: ...
       nextNode: 4
@@ -48,61 +59,156 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: And if you get close to another planet then they will drag you to their
-      orbit so you can chat.
+  - npcText: Fly into the area. Move with WASD or ARROW KEYS, shoot with SPACE, avoid
+      asteroids, and earn points by destroying them.
     options:
-    - text: What do we chat about?
+    - text: And if asteroid hits me?
       nextNode: 5
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: 'Oh, many things. Trade, rewards, gibberish and nonsense from time to
-      time. '
+  - npcText: You lose a life, and if you lose them all, you die.
     options:
-    - text: What about asteroids descruction?
+    - text: Oh... that's it? No replay or anything?
       nextNode: 6
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: Go into asteroids area. Hit 'SPACE' to shoot, once asteroid is destroyed
-      you  recieve points.
+  - npcText: No. This is not a video game, but there is a trick.
     options:
-    - text: And if asteroid hits me?
+    - text: Tell me.
       nextNode: 7
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: Oh, you just lose one of your lives and if you lose all them you die.
-      And that's it.
+  - npcText: In asteroid areas you can bail out. Press 'E' and after seven seconds
+      you return to safety. You do not have to die there.
     options:
-    - text: Oh... wow... that's it? No replay or anything?
+    - text: So what should I do now?
       nextNode: 8
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: Fly into the area behind you and destroy asteroids. Reach 800 points,
+      press 'E' to eject, then return and we will talk again.
+    options:
+    - text: Ok, I will try.
+      nextNode: -1
       updatesPlanetNode: 1
       newPlanetNode: 9
       triggersEvent: 0
       eventId: 
-  - npcText: Do you have 10,000 points?
+  - npcText: Got 800 points already?
     options:
-    - text: No
-      nextNode: 11
-      updatesPlanetNode: 0
-      newPlanetNode: 0
-      triggersEvent: 0
-      eventId: 
     - text: Yes
-      nextNode: 11
+      nextNode: 10
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: CHECKPOINTS800
+    - text: No
+      nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: No, nothing. Come back once you have 10,000 points. This will be your
-      small victory for now. Until then - bye!
+  - npcText: 'No you don''t. Go get the points. '
     options:
-    - text: Wait, I still have some questions!
-      nextNode: 8
+    - text: Sure.
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: CHECKPOINTS800
+  - npcText: Good. Now it is time to reveal a secret.
+    options:
+    - text: Huh?
+      nextNode: 12
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: REMOVE_TUTORIAL_ASTEROIDS
+  - npcText: There are other planets. Fly close enough and you will be pulled into
+      their orbit to talk or trade.
+    options:
+    - text: Anything else?
+      nextNode: 13
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: TUTORIAL_PASSED
+  - npcText: Some planets do not speak your language, so you may need a ship with
+      a translator.
+    options:
+    - text: And my next goal is?
+      nextNode: 14
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: "Explore space. I do not know. This is your life. If you want a dorky
+      win condition, reach 100,000 points and come back. And do not return with questions
+      \u2013\_I do not speak your language."
+    options:
+    - text: "What do you mean? You\u2019re speaking it right now."
+      nextNode: 15
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: "That\u2019s the catch. I only know the lines before this, and this
+      one: \u2018bring me 100,000 points to win.\u2019 Good luck. Bye."
+    options:
+    - text: Uhm... ok, bye then.
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 17
+      triggersEvent: 0
+      eventId: 
+    - text: 'You are kidding, right? '
+      nextNode: 17
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: "\xD6\xF6 \xE4\xE4\xE4\xFC\xF6\xE4\xF6? 10,000 \xF5\xE4\xE4\xFC\xF6\xF6"
+    options:
+    - text: 'Okay, got it. Have a nice day then. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 18
+      triggersEvent: 0
+      eventId: 
+  - npcText: "\xE4\xF5\xF6 10,000 \xF6\xF6\xE4\xF5\xF6\xFC? "
+    options:
+    - text: 'Yeah, here are your points. '
+      nextNode: 18
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: CHECKPOINTS10000
+    - text: Uhm... no, not yet...
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: CHECKPOINTS10000
+  - npcText: "\xF5. 10,000"
+    options:
+    - text: Mkay, you are right...
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 17
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'You did. You truly are the chosen one. '
+    options:
+    - text: PLACEHOLDER FOR WINCOND
+      nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 0
