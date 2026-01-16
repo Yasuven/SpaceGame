@@ -1,6 +1,7 @@
-using UnityEngine;
-using TMPro;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueWindow : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class DialogueWindow : MonoBehaviour
         IsFinished = false;
         gameObject.SetActive(true);
 
+        // Disable Player Controls
+        Events.DialogueStart();
+
         ShowCurrentNode();
     }
 
@@ -64,10 +68,10 @@ public class DialogueWindow : MonoBehaviour
     }
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             MoveSelection(-1);
 
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             MoveSelection(+1);
 
         else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
@@ -152,5 +156,8 @@ public class DialogueWindow : MonoBehaviour
         IsFinished = true;
         gameObject.SetActive(false);
         ClearOptions();
+
+        // Enable Player Controls
+        Events.DialogueEnd();
     }
 }

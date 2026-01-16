@@ -49,5 +49,14 @@ public static class Events
     public static event Action<LevelData> OnLevelStart;
     public static void LevelStart(LevelData level) => OnLevelStart?.Invoke(level);
 
+    public static event Action OnDialogueStart;
+
+    public static void DialogueStart() => OnDialogueStart?.Invoke();
+
+    public static event Action OnDialogueEnd;
+
+    public static void DialogueEnd() => OnDialogueEnd?.Invoke();
+
+
 }
 

@@ -31,5 +31,31 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void Update()
+    {
+        Bounds bounds = OrthographicBounds(Camera.main);
+
+        if (transform.position.x >= bounds.min.x && 
+            transform.position.x <= bounds.max.x &&
+            transform.position.y >= bounds.min.y && 
+            transform.position.y <= bounds.max.y)
+        {
+            // Inside bounds
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public Bounds OrthographicBounds(Camera camera)
+    {
+        float screenAspect = (float)Screen.width / (float)Screen.height;
+        float cameraHeight = camera.orthographicSize * 2;
+        Bounds bounds = new Bounds(
+            camera.transform.position,
+            new Vector3(cameraHeight * screenAspect, cameraHeight, 0));
+        return bounds;
+    }
 
 }

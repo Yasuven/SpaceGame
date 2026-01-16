@@ -68,9 +68,13 @@ public class Player : MonoBehaviour
         _shootAction = PlayerInput.FindAction("Shoot");
         _ejectAction = PlayerInput.FindAction("Eject");
 
+        // events
+        Events.OnDialogueStart += OnDialogueStart;
+        Events.OnDialogueEnd += OnDialogueEnd;
+
     }
 
-        private void OnEnable()
+    private void OnEnable()
         {
         _thrustAction = PlayerInput.FindAction("Thrust");
         _turnAction = PlayerInput.FindAction("Turn");
@@ -85,6 +89,7 @@ public class Player : MonoBehaviour
         _shootAction.performed += OnShoot;
         _ejectAction.performed += HandleEjecting;
 
+
     }
 
     private void OnDisable()
@@ -97,6 +102,10 @@ public class Player : MonoBehaviour
         _turnAction?.Disable();
         _shootAction?.Disable();
         _ejectAction?.Disable();
+
+        // events
+        Events.OnDialogueStart -= OnDialogueStart;
+        Events.OnDialogueEnd -= OnDialogueEnd;
     }
 
     private void OnDestroy()
@@ -204,6 +213,7 @@ public class Player : MonoBehaviour
         gameObject.SetActive(true);
 
         _isAlive = true;
+        _isEjecting = false;
         StartCoroutine(InvulnerabilityFlash());
     }
 
@@ -244,5 +254,17 @@ public class Player : MonoBehaviour
         TurnSpeed = ship.turnSpeed;
         shipMaxVelocity = ship.maxVelocity;
         thrustLoopClip = ship.thrustLoopClip;
+    }
+
+    private void OnDialogueStart()
+    {
+        PlayerInput.FindActionMap("Player").Disable();
+        PlayerInput.FindActionMap("UI").Enable();
+    }
+
+    private void OnDialogueEnd()
+    {
+        PlayerInput.FindActionMap("UI").Disable();
+        PlayerInput.FindActionMap("Player").Enable();
     }
 }

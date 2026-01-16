@@ -27,6 +27,7 @@ public class MinigameUIManager : MonoBehaviour
         Events.OnSetLives += OnSetLives;
         Events.OnSetScore += OnSetScore;
         Events.OnEjecting += OnEjecting;
+        Events.OnPlayerDeath += OnPlayerDeath;
     }
 
     private void OnDestroy()
@@ -36,6 +37,7 @@ public class MinigameUIManager : MonoBehaviour
         Events.OnSetLives -= OnSetLives;
         Events.OnSetScore -= OnSetScore;
         Events.OnEjecting -= OnEjecting;
+        Events.OnPlayerDeath -= OnPlayerDeath;
     }
 
     private void Start()
@@ -91,5 +93,11 @@ public class MinigameUIManager : MonoBehaviour
         timerText.gameObject.SetActive(false);
         int parsedScore = int.Parse(scoreText.text);
         SceneManager.LoadScene("OpenWorld");
+    }
+
+    private void OnPlayerDeath(int amount) {
+        StopAllCoroutines();
+        timerText.gameObject.SetActive(false);
+        countDown = 7f;
     }
 }
