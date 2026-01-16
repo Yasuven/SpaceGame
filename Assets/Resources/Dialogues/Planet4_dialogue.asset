@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c35c21a36994c0fa28086cfac5743f, type: 3}
+  m_Name: Planet4_dialogue
+  m_EditorClassIdentifier: 
+  nodes:
+  - npcText: 'Stranger. We welcome you in our inter-galactic quantum-randomized casino. '
+    options:
+    - text: ...
+      nextNode: 1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: You are not on our previous guest-list. Let us introduce you to the
+      rules of our casino game.
+    options:
+    - text: Go on.
+      nextNode: 2
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: We play with all the points on your account, with sum of digits to be
+      more precise. For example, if your current points are 16,765 then the sum is
+      1+6+7+6+5 = 25
+    options:
+    - text: And then what?
+      nextNode: 3
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'Then we summon our quantum-randomizer to determine the condition of
+      your victory: either sum is odd, even or divisible by 3 or 5. If sum responds
+      to summoned condition then you win. If it does not, we win.'
+    options:
+    - text: How am I supposed to trust computer in randomisation?
+      nextNode: 4
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: Are not you trusting computers all the time? Anyway, if you win we x1.5
+      your points. And if you lose we take half of everything you have. Oh. And if
+      you end up with less than 2,000 points we won't take your points. We just will
+      take your spaceship.
+    options:
+    - text: What? How am I supposed to destroy asteroids then?
+      nextNode: 5
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: No worries. We will give you our spare ship. It does the job. But you
+      are not welcome in casino while on this ship. So, all clear or we should repeat
+      the rules?
+    options:
+    - text: 'All clear. '
+      nextNode: 10
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+    - text: Repeat please
+      nextNode: 6
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: We play with all the points on your account, with sum of digits to be
+      more precise. For example, if your current points are 16,765 then the sum is
+      1+6+7+6+5 = 25
+    options:
+    - text: Okay.
+      nextNode: 7
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'Then we summon our quantum-randomizer to determine the condition of
+      your victory: either sum is odd, even or divisible by 3 or 5. If sum reponds
+      to summoned condition then you win. If it does not, we win.'
+    options:
+    - text: 'Mkay. '
+      nextNode: 8
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: If you win we x1.5 your points. And if you lose we take half of everything
+      you have.
+    options:
+    - text: 'Mkay. '
+      nextNode: 9
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: And if you have less than 2,000 points we won't take your points. We
+      just will take your spaceship and give you spare one. Should we repeat or all
+      clear?
+    options:
+    - text: All clear.
+      nextNode: 10
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+    - text: 'Repeat please. '
+      nextNode: 6
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: Should we play?
+    options:
+    - text: Yes.
+      nextNode: 11
+      updatesPlanetNode: 1
+      newPlanetNode: 10
+      triggersEvent: 0
+      eventId: 
+    - text: No.
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: And so we summon inter-galactic quantum-randomizer! Randomizer says
+      that we check whether your point's digits are...
+    options:
+    - text: ...
+      nextNode: 0
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: RANDOMIZER
+  - npcText: '... odd! Well, you... '
+    options:
+    - text: ...
+      nextNode: 0
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: RANDOMIZER_ODD
+  - npcText: '... even! And you have... '
+    options:
+    - text: ...
+      nextNode: 0
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: RANDOMIZER_EVEN
+  - npcText: ... divisible by 3. So...
+    options:
+    - text: ...
+      nextNode: 0
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: RANDOMIZER_DIVISIBLE3
+  - npcText: '... divisible by 5. You... '
+    options:
+    - text: ...
+      nextNode: 0
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: RANDOMIZER_DIVISIBLE5
+  - npcText: '.. won! Well... wanna try again? '
+    options:
+    - text: Yes!
+      nextNode: 11
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: RANDOMIZER_ODD
+    - text: 'Maybe next time. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: RANDOMIZER_ODD
+  - npcText: '.. lost... and your ship is now ours. Come again when you have points
+      or some proper ship. '
+    options:
+    - text: Damn.
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: RANDOMIZER_ODD
+  - npcText: .. lost... still have some points though. Want to try again?
+    options:
+    - text: 'You know... I better go. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: RANDOMIZER_ODD
+    - text: Yeah, let's try!
+      nextNode: 11
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'This is a casino, you know. Get more than 2000 points to enter. '
+    options:
+    - text: Ok, I will.
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: RANDOMIZER_ODD
+  - npcText: 'You can not enter our respectable casino while flying this garbage. '
+    options:
+    - text: 'But... you gave it to me... Fine. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
