@@ -8,6 +8,11 @@ public class Planet4_Events : PlanetEvents
     {
         switch (eventId)
         {
+
+            case "VISITED":
+                planet.haveContacted = true;
+                break;
+
             case "RANDOMIZER":
             {
                 int[] nodes = { 12, 13, 14, 15 };

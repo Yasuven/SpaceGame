@@ -10,20 +10,8 @@ public class AsteroidsTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DataCarrier.playerStartPosition = other.transform.position;
-
-                if (DataCarrier.asteroidAreas.ContainsKey(areaName))
-                {
-                    Debug.Log("we entered: " + areaName);
-                    DataCarrier.asteroidAreas[areaName] = false;
-                }
-                DataCarrier.asteroidAreas[areaName] = false;
-            
-            /*
-            foreach (var kvp in DataCarrier.asteroidAreas)
-            {
-                //Debug.Log($"[DataCarrierDebugger] {kvp.Key} = {kvp.Value}");
-            }
-            */
+            DataCarrier.asteroidAreas[areaName] = false;
+            DataCarrier.lastEnteredArea = areaName;
             OpenWorldInit.RewritePlanetStates();  
             SceneManager.LoadScene("Asteroids");
         }

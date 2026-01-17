@@ -104,6 +104,7 @@ public class OpenWorldInit : MonoBehaviour
 
     private void HandleAsteroidAreas()
     {
+        ReactivateAsteroidAreasIfLow();
         foreach (Transform child in asteroidAreasParent)
         {
             string areaName = child.name;
@@ -173,5 +174,27 @@ public class OpenWorldInit : MonoBehaviour
         }
     }
 
+    public static void ReactivateAsteroidAreasIfLow()
+    {
+        int total = DataCarrier.asteroidAreas.Count;
+        int activeCount = 0;
+
+        foreach (var kvp in DataCarrier.asteroidAreas)
+        {
+            if (kvp.Value)
+                activeCount++;
+        }
+
+        // If active areas <= one third of total
+        if (activeCount > total / 3)
+            return;
+
+        var keys = new List<string>(DataCarrier.asteroidAreas.Keys);
+        foreach (var key in keys)
+        {
+            DataCarrier.asteroidAreas[key] =
+                key != DataCarrier.lastEnteredArea;
+        }
+    }
 
 }

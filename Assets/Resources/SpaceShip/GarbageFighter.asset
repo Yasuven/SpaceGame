@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0176421f52eaa41c1910b31d2bb4acbc, type: 3}
   m_Name: GarbageFighter
   m_EditorClassIdentifier: 
-  spaceshipName: 
+  spaceshipName: GarbageFighter
   shipSprite: {fileID: 21300000, guid: d81962a1d8fb048938ca12f444d9bbdc, type: 3}
   thrustSpeed: 8
   turnSpeed: 120
