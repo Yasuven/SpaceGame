@@ -219,3 +219,36 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
+  - npcText: Oh. You are finally back. Feeling victorious?
+    options:
+    - text: "You said you didn\u2019t speak my language?"
+      nextNode: 21
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: "I had plenty of time to learn it. Anyway \u2013\_you won. Congratulations."
+    options:
+    - text: "That\u2019s it?"
+      nextNode: 22
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: "It is. Or would you prefer a special \u201Cwin screen\u201D showing
+      your score? You could see your points in the corner the entire time."
+    options:
+    - text: "I\u2026 I don\u2019t know. Something would be nice."
+      nextNode: 23
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: Alright. Here is your victory screen. Enjoy.
+    options:
+    - text: Ehm...
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: TEST_VIC

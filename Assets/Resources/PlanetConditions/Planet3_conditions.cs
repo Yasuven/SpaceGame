@@ -5,6 +5,10 @@ public class Planet3Condition : PlanetCondition
 {
     public override int VerifyConditions(Planet planet)
     {
+        if (DataCarrier.points >= 1000)
+        {
+            return 20;
+        }
         return -1;
     }
 }
