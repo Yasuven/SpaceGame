@@ -4,17 +4,13 @@ public abstract class PlayerSpaceship : ScriptableObject
 {
     public string spaceshipName;
     public Sprite shipSprite;
-
     // movement
     public float thrustSpeed;
     public float turnSpeed;
     public float maxVelocity;
-
     // shooting
-    public bool autoFire = false;
     public float shootInterval = 0.25f;
     protected float _lastShotTime = -999f;
-
     // audio
     public AudioClip thrustLoopClip;
     public AudioClip shootClip;

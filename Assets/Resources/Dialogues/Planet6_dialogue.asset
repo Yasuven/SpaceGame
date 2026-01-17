@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c35c21a36994c0fa28086cfac5743f, type: 3}
+  m_Name: Planet6_dialogue
+  m_EditorClassIdentifier: 
+  nodes:
+  - npcText: Have you noticed that asteroid areas respawn from time to time?
+    options:
+    - text: Yes?
+      nextNode: 1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+    - text: No, not yet...
+      nextNode: 1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: Anyway. Thank you for your service. Here, take 10 points.
+    options:
+    - text: Thank you.
+      nextNode: 2
+      updatesPlanetNode: 1
+      newPlanetNode: 2
+      triggersEvent: 1
+      eventId: GIFT10
+    - text: Ehm... sure.
+      nextNode: 2
+      updatesPlanetNode: 1
+      newPlanetNode: 2
+      triggersEvent: 0
+      eventId: GIFT10
+  - npcText: Thank you again. Got nothing else to say. Bye
+    options:
+    - text: 'Bye. '
+      nextNode: -1
+      updatesPlanetNode: 1
+      newPlanetNode: 2
+      triggersEvent: 0
+      eventId: 

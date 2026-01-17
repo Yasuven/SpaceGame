@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c35c21a36994c0fa28086cfac5743f, type: 3}
+  m_Name: Planet5_dialogue
+  m_EditorClassIdentifier: 
+  nodes:
+  - npcText: "\u20AC#P\u20AC\u042F\u20ACM\u20AC\u0418T@L LRR\xDC PIY"
+    options:
+    - text: 'Yeap, okay. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'No time to chat. You give me experemental ship and 10,000 points. I
+      give you something fast. '
+    options:
+    - text: 'Let''s do it. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: PURCHASE_MACHINEGUN
+    - text: Maybe next time. Bye.
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: '10,000 points. Not a point less. '
+    options:
+    - text: 'Sure, I will be back. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: 'Experimental ship only. Not interested in anything else. '
+    options:
+    - text: 'Yeap, got it. '
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 
+  - npcText: Nothing to offer. Get lost.
+    options:
+    - text: ...
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 0
+      eventId: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Planet4_dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - npcText: 'Stranger. We welcome you in our inter-galactic quantum-randomized casino. '
+  - npcText: Stranger. Welcome to our intergalactic, quantum-randomized casino.
     options:
     - text: ...
       nextNode: 1
@@ -21,7 +21,7 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: You are not on our previous guest-list. Let us introduce you to the
+  - npcText: You are not on our previous guest list. Let us introduce you to the
       rules of our casino game.
     options:
     - text: Go on.
@@ -30,40 +30,39 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: We play with all the points on your account, with sum of digits to be
-      more precise. For example, if your current points are 16,765 then the sum is
-      1+6+7+6+5 = 25
+  - npcText: "We play with all the points on your account \u2013 specifically, the
+      sum of their digits. For example, if your current points are 16,765, then the
+      sum is 1 + 6 + 7 + 6 + 5 = 25."
     options:
-    - text: And then what?
+    - text: Then what?
       nextNode: 3
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: 'Then we summon our quantum-randomizer to determine the condition of
-      your victory: either sum is odd, even or divisible by 3 or 5. If sum responds
-      to summoned condition then you win. If it does not, we win.'
+  - npcText: 'Then we summon our quantum randomizer to choose the condition of victory:
+      the sum must be odd, even, or divisible by 3 or 5. If the sum satisfies the
+      chosen condition, you win. Otherwise, we win.'
     options:
-    - text: How am I supposed to trust computer in randomisation?
+    - text: Am I supposed to trust computer in randomisation?
       nextNode: 4
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: Are not you trusting computers all the time? Anyway, if you win we x1.5
-      your points. And if you lose we take half of everything you have. Oh. And if
-      you end up with less than 2,000 points we won't take your points. We just will
-      take your spaceship.
+  - npcText: Do you not trust computers all the time? If you win, we multiply your
+      points by 1.5. If you lose, we take half of the points. If you would end up
+      with fewer than 2,000 points, we take no points. We take your spaceship.
     options:
-    - text: What? How am I supposed to destroy asteroids then?
+    - text: 'Okay. Right. '
       nextNode: 5
       updatesPlanetNode: 0
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: No worries. We will give you our spare ship. It does the job. But you
-      are not welcome in casino while on this ship. So, all clear or we should repeat
-      the rules?
+  - npcText: "No worries. We will give you a spare ship \u2013\_it does the job.
+      But you are not welcome in the casino while flying it. All clear, or should
+      we repeat the rules?"
     options:
     - text: 'All clear. '
       nextNode: 10
@@ -77,9 +76,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: We play with all the points on your account, with sum of digits to be
-      more precise. For example, if your current points are 16,765 then the sum is
-      1+6+7+6+5 = 25
+  - npcText: We use the sum of the digits in your account. For example, 16,765 becomes
+      1 + 6 + 7 + 6 + 5 = 25.
     options:
     - text: Okay.
       nextNode: 7
@@ -87,9 +85,9 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: 'Then we summon our quantum-randomizer to determine the condition of
-      your victory: either sum is odd, even or divisible by 3 or 5. If sum reponds
-      to summoned condition then you win. If it does not, we win.'
+  - npcText: 'Then we summon the quantum randomizer to choose the victory condition:
+      odd, even, or divisible by 3 or 5. If the sum meets the condition, you win.
+      Otherwise, we win.'
     options:
     - text: 'Mkay. '
       nextNode: 8
@@ -97,8 +95,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: If you win we x1.5 your points. And if you lose we take half of everything
-      you have.
+  - npcText: "Win and your points increase by 1.5\xD7. Lose and we take half of everything
+      you have."
     options:
     - text: 'Mkay. '
       nextNode: 9
@@ -106,9 +104,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: And if you have less than 2,000 points we won't take your points. We
-      just will take your spaceship and give you spare one. Should we repeat or all
-      clear?
+  - npcText: If you would end up with fever than 2,000 points, we take no points.
+      We take your ship and give you a spare instead. All clear, or should we repeat?
     options:
     - text: All clear.
       nextNode: 10
@@ -122,7 +119,7 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: Should we play?
+  - npcText: Shall we play?
     options:
     - text: Yes.
       nextNode: 11
@@ -134,10 +131,10 @@ MonoBehaviour:
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
-      triggersEvent: 0
-      eventId: 
-  - npcText: And so we summon inter-galactic quantum-randomizer! Randomizer says
-      that we check whether your point's digits are...
+      triggersEvent: 1
+      eventId: VISITED
+  - npcText: "Then we summon the intergalactic quantum randomizer! It declares that
+      we check whether your point digits are\u2026"
     options:
     - text: ...
       nextNode: 0
@@ -177,7 +174,7 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 1
       eventId: RANDOMIZER_DIVISIBLE5
-  - npcText: '.. won! Well... wanna try again? '
+  - npcText: ".. you won! Well \u2013\_want to try again? "
     options:
     - text: Yes!
       nextNode: 11
@@ -191,8 +188,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: RANDOMIZER_ODD
-  - npcText: '.. lost... and your ship is now ours. Come again when you have points
-      or some proper ship. '
+  - npcText: ... you lost. Your ship is now ours. Come back when you have points
+      or a proper ship.
     options:
     - text: Damn.
       nextNode: -1
@@ -200,7 +197,7 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: RANDOMIZER_ODD
-  - npcText: .. lost... still have some points though. Want to try again?
+  - npcText: "\u2026you lost. You still have some points. Want to try again?"
     options:
     - text: 'You know... I better go. '
       nextNode: -1
@@ -214,7 +211,8 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: 'This is a casino, you know. Get more than 2000 points to enter. '
+  - npcText: This is respectable intergalactic quantum-randomized casino. Get more
+      than 2,000 points to enter.
     options:
     - text: Ok, I will.
       nextNode: -1
@@ -222,7 +220,7 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: RANDOMIZER_ODD
-  - npcText: 'You can not enter our respectable casino while flying this garbage. '
+  - npcText: You cannot enter our respectable casino while flying this garbage.
     options:
     - text: 'But... you gave it to me... Fine. '
       nextNode: -1

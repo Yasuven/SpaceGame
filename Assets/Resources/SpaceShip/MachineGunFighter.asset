@@ -9,22 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6568914c2454362b1966ee0af5c787, type: 3}
-  m_Name: RandomFighter
+  m_Script: {fileID: 11500000, guid: 642f3a278b1f3486dbbf9b693db96d3f, type: 3}
+  m_Name: MachineGunFighter
   m_EditorClassIdentifier: 
-  spaceshipName: RandomFighter
-  shipSprite: {fileID: 21300000, guid: d29e4d5d273304a50a45d9657b983ff8, type: 3}
+  spaceshipName: 
+  shipSprite: {fileID: 2326816337482317205, guid: b7d8e3deb37da47fd84f803be5b8a165, type: 3}
   thrustSpeed: 10
-  turnSpeed: 300
-  maxVelocity: 9
-  shootInterval: 0.3
+  turnSpeed: 200
+  maxVelocity: 7
+  shootInterval: 0.08
   thrustLoopClip: {fileID: 0}
   shootClip: {fileID: 0}
   deathClip: {fileID: 0}
   respawnClip: {fileID: 0}
   bulletPrefab: {fileID: 6150703254227194107, guid: 40094903811e47b468ba4778bfe9ec15, type: 3}
-  minBullets: 1
-  maxBullets: 3
-  maxSpreadAngle: 15
-  minSizeMultiplier: 1
-  maxSizeMultiplier: 2

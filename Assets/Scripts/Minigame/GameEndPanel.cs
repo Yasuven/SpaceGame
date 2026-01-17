@@ -32,8 +32,9 @@ public class GameEndPanel : MonoBehaviour
 
     private void OnWinningCondition()
     {
+        Time.timeScale = 0f; // pause the game when won. added for openWorld
         int finalScore = Events.RequestScore();
-        Title.text = "You Win";
+        Title.text = "You Won";
         ScoreText.text = $"Score: {finalScore}";
         gameObject.SetActive(true);
     }

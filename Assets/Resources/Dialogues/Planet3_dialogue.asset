@@ -59,6 +59,12 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
+    - text: let me just test win condition
+      nextNode: -1
+      updatesPlanetNode: 0
+      newPlanetNode: 0
+      triggersEvent: 1
+      eventId: TEST_VIC
   - npcText: Fly into the area. Move with WASD or ARROW KEYS, shoot with SPACE, avoid
       asteroids, and earn points by destroying them.
     options:

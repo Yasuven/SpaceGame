@@ -8,6 +8,9 @@ public class Planet3_Events : PlanetEvents
     {
         switch (eventId)
         {
+            case "TEST_VIC":
+                Events.Victory();
+                break;
             case "TUTORIAL_PASSED":
                 DataCarrier.tutorialPassed = true;
                 break;
