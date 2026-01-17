@@ -26,7 +26,8 @@ public class GameEndPanel : MonoBehaviour
 
     private void OnGameOver()
     {
-        int finalScore = Events.RequestScore();
+        //int finalScore = Events.RequestScore();
+        int finalScore = DataCarrier.points;
         Title.text = "Game Over";
         ScoreText.text = $"Score: {finalScore}";
         gameObject.SetActive(true);
@@ -45,7 +46,8 @@ public class GameEndPanel : MonoBehaviour
     private void OnWinningCondition()
     {
         Time.timeScale = 0f; // pause the game when won. added for openWorld
-        int finalScore = Events.RequestScore();
+        //int finalScore = Events.RequestScore();
+        int finalScore = DataCarrier.points;
         Title.text = "You Won";
         ScoreText.text = $"Score: {finalScore}";
         gameObject.SetActive(true);
