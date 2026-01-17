@@ -41,11 +41,20 @@ MonoBehaviour:
       newPlanetNode: 2
       triggersEvent: 0
       eventId: GIFT10
+  - npcText: "Spend it wisely. Of course, you can spend it in the intergalactic casino.
+      It\u2019s to our left or right \u2013\_space is continuous, you know."
+    options:
+    - text: Sure.
+      nextNode: 3
+      updatesPlanetNode: 1
+      newPlanetNode: 3
+      triggersEvent: 0
+      eventId: 
   - npcText: Thank you again. Got nothing else to say. Bye
     options:
     - text: 'Bye. '
       nextNode: -1
       updatesPlanetNode: 1
-      newPlanetNode: 2
+      newPlanetNode: 3
       triggersEvent: 0
       eventId: 

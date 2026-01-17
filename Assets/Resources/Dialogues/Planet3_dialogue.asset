@@ -59,12 +59,6 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-    - text: let me just test win condition
-      nextNode: -1
-      updatesPlanetNode: 0
-      newPlanetNode: 0
-      triggersEvent: 1
-      eventId: TEST_VIC
   - npcText: Fly into the area. Move with WASD or ARROW KEYS, shoot with SPACE, avoid
       asteroids, and earn points by destroying them.
     options:
@@ -156,9 +150,9 @@ MonoBehaviour:
       newPlanetNode: 0
       triggersEvent: 0
       eventId: 
-  - npcText: "Explore space, go upward.I do not know. If you want a dorky win condition
-      \u2013\_reach 100,000 points and come back. And do not return with questions
-      \u2013\_I do not speak your language."
+  - npcText: "Explore space, go upward. I do not know. If you want a dorky win condition
+      \u2013\_reach 100,000 points and come back. Do not rask questions \u2013\_I
+      do not speak your language."
     options:
     - text: "What do you mean? You\u2019re speaking it right now."
       nextNode: 15
@@ -211,9 +205,9 @@ MonoBehaviour:
       newPlanetNode: 17
       triggersEvent: 0
       eventId: 
-  - npcText: 'You did. You truly are the chosen one. '
+  - npcText: ...
     options:
-    - text: PLACEHOLDER FOR WINCOND
+    - text: ...
       nextNode: -1
       updatesPlanetNode: 0
       newPlanetNode: 0
