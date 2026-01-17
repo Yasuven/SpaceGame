@@ -365,15 +365,20 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             LoadActionBinding();
         }
 
+        private void Start()
+        {
+            LoadActionBinding();
+        }
+
         private void SaveActionBinding()
         {
             var currentBindings = actionReference.action.actionMap.SaveBindingOverridesAsJson();
-            PlayerPrefs.SetString(m_Action.action.name + bindingId, currentBindings);
+            PlayerPrefs.SetString("controls", currentBindings);
         }
 
         private void LoadActionBinding()
         {
-            var savedBindings = PlayerPrefs.GetString(m_Action.action.name + bindingId);
+            var savedBindings = PlayerPrefs.GetString("controls");
             if (!string.IsNullOrEmpty(savedBindings)) { 
                 m_Action.action.actionMap.LoadBindingOverridesFromJson(savedBindings);
                 UpdateBindingDisplay();
