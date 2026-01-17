@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         _shootAction?.Enable();
         _ejectAction?.Enable();
 
-        _shootAction.performed += OnShoot;
+        //_shootAction.performed += OnShoot;
         _ejectAction.performed += HandleEjecting;
 
 
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
 
-        _shootAction.performed -= OnShoot;
+        //_shootAction.performed -= OnShoot;
         _ejectAction.performed -= HandleEjecting;
 
         _thrustAction?.Disable();
@@ -125,7 +125,24 @@ public class Player : MonoBehaviour
 
         HandleInput();
         UpdateThrusterEffects();
+        HandleShooting();
     }
+
+    private void HandleShooting()
+    {
+        if (_inOpenWorld) return;
+        if (_shootAction == null)
+            return;
+
+        if (_shootAction.IsPressed())
+        {
+            bool fired = _spaceship.FireWeapon(transform);
+
+            if (fired && _spaceship.shootClip != null)
+                AudioManager.Instance.PlaySound(_spaceship.shootClip);
+        }
+    }
+
 
     private void FixedUpdate()
     {

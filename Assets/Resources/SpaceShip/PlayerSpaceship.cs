@@ -11,6 +11,7 @@ public abstract class PlayerSpaceship : ScriptableObject
     public float maxVelocity;
 
     // shooting
+    public bool autoFire = false;
     public float shootInterval = 0.25f;
     protected float _lastShotTime = -999f;
 
