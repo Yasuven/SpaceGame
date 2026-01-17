@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 642f3a278b1f3486dbbf9b693db96d3f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shipSprite: {instanceID: 0}
+  - thrustLoopClip: {fileID: 8300000, guid: 23112b3ad6710864cbba2754da0061d3, type: 3}
+  - shootClip: {fileID: 8300000, guid: 9c9a3d2a2ed1e412f9db57bbe35127dd, type: 3}
+  - deathClip: {fileID: 8300000, guid: 4ffa7a2523548f9459e38295a31c43e9, type: 3}
+  - respawnClip: {instanceID: 0}
+  - bulletPrefab: {fileID: 6150703254227194107, guid: 40094903811e47b468ba4778bfe9ec15, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

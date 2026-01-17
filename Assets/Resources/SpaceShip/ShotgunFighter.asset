@@ -15,11 +15,11 @@ MonoBehaviour:
   spaceshipName: ShotgunFighter
   shipSprite: {fileID: 21300000, guid: a48f10066111d408b83e15c4f286780d, type: 3}
   thrustSpeed: 7
-  turnSpeed: 140
+  turnSpeed: 180
   maxVelocity: 7
   shootInterval: 0.9
   thrustLoopClip: {fileID: 8300000, guid: 23112b3ad6710864cbba2754da0061d3, type: 3}
-  shootClip: {fileID: 8300000, guid: c28244c98df1d9b419ea7c02d562c4de, type: 3}
+  shootClip: {fileID: 8300000, guid: 44d11170b7d4e4d0db3e99804b9f62d8, type: 3}
   deathClip: {fileID: 8300000, guid: 4ffa7a2523548f9459e38295a31c43e9, type: 3}
   respawnClip: {fileID: 8300000, guid: 3fc4dfac8b98afe43a4b675415ac30d5, type: 3}
   bulletPrefab: {fileID: 6150703254227194107, guid: 40094903811e47b468ba4778bfe9ec15, type: 3}
