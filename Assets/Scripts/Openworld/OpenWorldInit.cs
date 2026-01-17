@@ -81,6 +81,7 @@ public class OpenWorldInit : MonoBehaviour
         }
     }
 
+    /*
     private void HandlePlayerSpawn()
     {
         Vector3 spawnPosition;
@@ -101,6 +102,22 @@ public class OpenWorldInit : MonoBehaviour
 
         player.transform.position = spawnPosition;
     }
+    */
+
+    private void HandlePlayerSpawn()
+    {
+        if (player == null)
+            return;
+
+        Vector3 fallback =
+            defaultSpawnPoint != null
+                ? defaultSpawnPoint.position
+                : player.transform.position;
+
+        player.transform.position =
+            DataCarrier.ResolvePlayerSpawn(fallback);
+    }
+
 
     private void HandleAsteroidAreas()
     {

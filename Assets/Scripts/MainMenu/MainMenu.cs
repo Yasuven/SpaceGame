@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         //TODO
+        DataCarrier.ResetOpenWorld();
+        SceneManager.LoadScene("OpenWorld"); // directly jump into OpenWorld
     }
 
     public void Options()
@@ -30,4 +33,6 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit Game - TODO");
         Application.Quit();
     }
+
+    
 }

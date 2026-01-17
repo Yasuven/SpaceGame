@@ -41,6 +41,8 @@ public class GameEndPanel : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

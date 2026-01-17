@@ -28,5 +28,42 @@ public static class DataCarrier
     {
         playerSpaceship = Resources.Load<PlayerSpaceship>("SpaceShip/BasicFighter");
     }
+
+    public static void ResetOpenWorld()
+    {
+        firstLoad = true;
+        points = 0;
+        tutorialPassed = false;
+        namesWereAssigned = false;
+
+        playerStartPosition = Vector3.zero;
+
+        planetStates.Clear();
+        planets.Clear();
+
+        var keys = new List<string>(asteroidAreas.Keys);
+        foreach (var key in keys)
+        {
+            asteroidAreas[key] = true;
+        }
+
+        lastEnteredArea = null;
+
+        playerSpaceship = Resources.Load<PlayerSpaceship>("SpaceShip/BasicFighter");
+    }
+
+    public static Vector3 ResolvePlayerSpawn(Vector3 fallbackPosition)
+    {
+        if (playerStartPosition != Vector3.zero)
+        {
+            Vector3 pos = playerStartPosition;
+            playerStartPosition = Vector3.zero;
+            return pos;
+        }
+
+        return fallbackPosition;
+    }
+
+
     
 }
