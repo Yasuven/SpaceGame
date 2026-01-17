@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -28,7 +30,17 @@ public class GameEndPanel : MonoBehaviour
         Title.text = "Game Over";
         ScoreText.text = $"Score: {finalScore}";
         gameObject.SetActive(true);
+        StartCoroutine(SelectNextFrame(RestartButton.gameObject));
     }
+
+
+
+    private IEnumerator SelectNextFrame(GameObject target)
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(target);
+    }
+
 
     private void OnWinningCondition()
     {
@@ -37,6 +49,7 @@ public class GameEndPanel : MonoBehaviour
         Title.text = "You Won";
         ScoreText.text = $"Score: {finalScore}";
         gameObject.SetActive(true);
+        StartCoroutine(SelectNextFrame(RestartButton.gameObject));
     }
 
     public void Restart()
