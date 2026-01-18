@@ -1,45 +1,23 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.IO.IsolatedStorage;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-   
-    public int PageIndex = 0;
+    [Header("Volume Sliders")]
+    public Slider masterSlider;
+    public Slider sfxSlider;
+    public Slider musicSlider;
 
+    [Header("Navigation")]
+    public int PageIndex = 0;
     public ToggleGroup toggleGroup;
     public List<Toggle> tabs = new List<Toggle>();
     public List<CanvasGroup> pages = new List<CanvasGroup>();
     public RectTransform PauseMenu;
 
-    private void Initialize()
-    {
-        toggleGroup = GetComponentInChildren<ToggleGroup>();
-
-        tabs.Clear();
-        pages.Clear();
-
-        tabs.AddRange(GetComponentsInChildren<Toggle>());
-        pages.AddRange(GetComponentsInChildren<CanvasGroup>());
-    }
-
-    private void Reset()
-    {
-        Initialize();
-    }
-
-    private void OnValidate()
-    {
-        Initialize();
-        OpenPage(PageIndex);
-        tabs[PageIndex].isOn = true;
-    }
-
     private void Awake()
     {
-        gameObject.SetActive(false);
         foreach (var toggle in tabs)
         {
             toggle.onValueChanged.AddListener(CheckForTab);
@@ -47,57 +25,74 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
-        foreach (var toggle in tabs)
+        if (AudioManager.Instance != null)
         {
-            toggle.onValueChanged.RemoveListener(CheckForTab);
+            InitializeSlider(masterSlider, "MasterVolumeSave", 0.5f, AudioManager.Instance.SetMasterVolume);
+            InitializeSlider(sfxSlider, "SFXVolumeSave", 0.5f, AudioManager.Instance.SetSFXVolume);
+            InitializeSlider(musicSlider, "MusicVolumeSave", 0.5f, AudioManager.Instance.SetMusicVolume);
         }
+
+        OpenPage(PageIndex);
+    }
+
+    private void InitializeSlider(Slider slider, string saveKey, float defaultVal, UnityEngine.Events.UnityAction<float> onValueChange)
+    {
+        if (slider == null) return;
+
+        slider.onValueChanged.RemoveAllListeners();
+        float savedVal = PlayerPrefs.GetFloat(saveKey, defaultVal);
+        slider.value = savedVal;
+        
+        // Force update the Mixer immediately
+        onValueChange.Invoke(savedVal);
+
+        slider.onValueChanged.AddListener(onValueChange);
     }
 
 
-    private void CheckForTab(bool value)
+    private void CheckForTab(bool isOn)
     {
+        if (!isOn) return; // Ignore the toggle being turned off
+
         for (int i = 0; i < tabs.Count; i++)
         {
-           if (!tabs[i].isOn) continue;
-            PageIndex = i;
+            if (tabs[i].isOn)
+            {
+                PageIndex = i;
+                break;
+            }
         }
         OpenPage(PageIndex);
     }
 
     private void OpenPage(int index)
     {
-        EnsureIndexIsInRange(index);
+        if (!gameObject.activeInHierarchy) return; 
+
+        if (pages.Count == 0) return;
+        
+        PageIndex = Mathf.Clamp(index, 0, pages.Count - 1);
 
         for (int i = 0; i < pages.Count; i++)
         {
-           bool isActivePage = (i == index);
-
+            bool isActivePage = (i == PageIndex);
             pages[i].alpha = isActivePage ? 1 : 0;
             pages[i].interactable = isActivePage;
             pages[i].blocksRaycasts = isActivePage;
         }
     }
 
-    private void EnsureIndexIsInRange(int index)
-    {
-        if (tabs.Count == 0 || pages.Count == 0) return;
-
-        PageIndex = Mathf.Clamp(index, 0, pages.Count - 1);
-    }
-
     public void JumpToPage(int page)
     {
-        EnsureIndexIsInRange(page);
-
-        tabs[PageIndex].isOn = true;
+        OpenPage(page);
+        if (tabs.Count > PageIndex) tabs[PageIndex].isOn = true;
     }
 
     public void Back()
     {
         gameObject.SetActive(false);
-        if (PauseMenu == null) return;
-        PauseMenu.gameObject.SetActive(true);
+        if (PauseMenu != null) PauseMenu.gameObject.SetActive(true);
     }
 }
