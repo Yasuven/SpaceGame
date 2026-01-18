@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.SetActive(false);
     }
 
     public void Resume()
@@ -30,6 +30,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Exit()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        //TODO
+        SceneManager.LoadScene("OpenWorld");
     }
 
     public void Options()
