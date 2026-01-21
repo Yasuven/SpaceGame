@@ -125,8 +125,8 @@ MonoBehaviour:
       nextNode: 11
       updatesPlanetNode: 1
       newPlanetNode: 10
-      triggersEvent: 0
-      eventId: 
+      triggersEvent: 1
+      eventId: VISITED
     - text: No.
       nextNode: -1
       updatesPlanetNode: 0

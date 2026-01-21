@@ -31,7 +31,7 @@ public class OptionsMenu : MonoBehaviour
         {
             InitializeSlider(masterSlider, "MasterVolumeSave", 0.5f, AudioManager.Instance.SetMasterVolume);
             InitializeSlider(sfxSlider, "SFXVolumeSave", 0.5f, AudioManager.Instance.SetSFXVolume);
-            InitializeSlider(musicSlider, "MusicVolumeSave", 0.5f, AudioManager.Instance.SetMusicVolume);
+            //InitializeSlider(musicSlider, "MusicVolumeSave", 0.5f, AudioManager.Instance.SetMusicVolume);
         }
 
         OpenPage(PageIndex);
